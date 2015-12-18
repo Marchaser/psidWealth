@@ -128,7 +128,7 @@ forval iv=1/`nVars' {;
 		
 	replace `value'=. if inlist(`whetherHave',8,9);
 	
-	replace `value'=. if `value'<=-999999;
+	replace `value'=. if `value'<-999999;
 	
 	replace `value'=. if `value'>=9999998;
 	
