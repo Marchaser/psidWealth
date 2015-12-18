@@ -1,0 +1,145 @@
+%
+        % Preamble
+\documentclass[12pt,notitlepage]{article}%
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm,latexsym}
+\usepackage[onehalfspacing]{setspace}%
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{comment}
+
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  citecolor=blue
+}
+\usepackage{subfig}
+
+%\usepackage[page]{appendix}
+%\usepackage{natbib}
+\usepackage{indentfirst}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\usepackage[sc]{mathpazo}
+%\linespread{1.05}         
+\usepackage[T1]{fontenc}
+%\usepackage{mathpazo,mathabx}
+%\usepackage{titlesec}
+%\usepackage{cmbright}
+%\usepackage{bm}
+
+\usepackage{caption}
+\usepackage[skip=0.5pt]{subcaption}
+
+\newtheorem{proposition}{Proposition}
+
+%\usepackage{enumerate}
+%\usepackage{mathtools} % for := symbol correctly printed
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{axiom}[theorem]{Axiom}
+%\newtheorem{case}[theorem]{Case}
+%\newtheorem{claim}[theorem]{Claim}
+%\newtheorem{conclusion}[theorem]{Conclusion}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}{Corollary}
+%\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}{Definition}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lem}{Lemma}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{problem}[theorem]{Problem}
+
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{solution}[theorem]{Solution}
+%\newtheorem{summary}[theorem]{Summary}
+%\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\setcounter{topnumber}{5}
+%\setcounter{bottomnumber}{5}
+%\setcounter{totalnumber}{8}
+%\pdfpagewidth 8.5in
+%\pdfpageheight 11in
+%\setlength{\topmargin}{-5in}
+%\setlength{\evensidemargin}{-0.1in}
+%\setlength{\oddsidemargin}{-0.1in}
+%\setlength{\textheight}{9.034in}
+%\setlength{\textwidth}{6.7in}
+%\setlength{\parskip}{1.5ex}
+%\setlength{\headsep}{0in}
+\usepackage[normalem]{ulem}
+
+\begin{document}
+
+Asset income data is processed in the following ways
+\begin{itemize}
+\item For years before 1994. Asset income is reported as ... (see data\_struct.xlsx)
+\item For years 1994-2003. Asset income is reported as ... (see data\_struct.xlsx). Each part is reported as income per payment, and frequency of payment. The public used PSID from Michigan doesn't aggregate these properly. Therefore, a manual aggregation is done. See psidWealth.do file.
+ Notice the variable "RENT\ OF WIFE AMT" and corresponding frequency variable "RENT OF WIFE PER" are missing. This is probably why the public used PSID fails to compute aggregates for these variables.
+
+\item The definition for "per"
+variables have changed since 1999.
+\item For years 2005-. Asset income is aggregated to annual level in the public used PSID data. (The Year 2005 documentation also mentions this aggregation was not done for 1994-2003). Therefore, the aggregated level is directly used.
+As a comparison, we check the aggregates imputed by Michigan-PSID,  and aggregation using the "amount/per" data. They give quite consistent results. However, two points worth mentioning: (1) the aggregates imputed by Michigan-PSID even contain more valid entries when the manual aggregations are not available (due to either missing values in the "amount" or "per" variable). (2) some aggregates are not consistent, but are quite rare. After all, we think the Michigan-PSID\ imputed values may be more reliable, and are consistent with the manual aggregation for 1994-2003 data.
+
+\item Missing value treatment.
+\begin{itemize}
+\item For data before 1994. No missing values are allowed. Only top coded values. See top values treatment below.
+\item For data 1994-2003. Both the "Amount" variable and "Per' variable can be missing. Usually the "amount" variable is top coded at $999997$, and the values $999998$, $999999$ correspond to "Don't know" and "Refuse to answer" respectively. These "amount" variables are bottom coded at $-999998$. In later years, the "amount" value -999999 refers to a loss but with unknown value, and should be coded as missing. The "per" variable, dependent on different years, may have different values corresponding to missing values. If any of the two variables are missing, then the final aggregate variable is coded as missing.
+\item In Year 1994, business income is topcoded at 9,999,998. And 9,999,999 corresponds to Latino samples (and more general immigrant samples in later years) and are coded as missing. In other samples, business income is topcoded at 9,999,999.
+\item For Year 2005 on, things are much easier. The aggregate variable imputed by Michigan-PSID already accounts for the missing values. And these aggregate variables can directly be used.
+\item If a single component of asset income is coded as missing, the whole household year observation is dropped. (Remember, households have the option to report 0. Therefore if they've reported "Don't know" or "Refuse", it must not be 0, and we will never have the chance to infer what are the exact values.)
+\end{itemize}
+\end{itemize}
+
+\section{Compute returns on asset}
+This section describes the procedures to compute returns on different categories of assets in details. Especially, how to impute capital gains for business/farm, stocks, home equity, and real estate.
+
+First, since the data structure is not completely consistent across survey years. A list of asset items for each year is presented as below:
+\begin{itemize}
+\item Annuity/IRA: 99-13 only. Since 84-94 report this in the cash accounts (see below).
+
+\item Business/Farm
+
+\begin{tabular}{ll}
+net value & 84-11 \\
+put money into & 89-13 \\
+sell interest in & 89-13 \\
+worth & 13 \\
+\end{tabular}
+
+\item Cash including IRA's and pension: 84-94
+\item Cash NOT including IRA's and pension: 99-13
+
+\item Checkings/savings: 84-13
+
+\item Bonds, insurance etc.: 84-13
+
+\item Real estate
+
+\begin{tabular}{ll}
+Own home, selling price & 89-13 \\
+bought/sold, whether & 13 \\
+bought whether & 89-11 \\
+bought amount & 89-13 \\ 
+net value & 84-13 \\ 
+sold whether & 89-11 \\
+sold amount & 89-13 \\
+\end{tabular}
+
+\item Stocks, mutual funds, etc.: including in IRAs 84-94; NOT including in IRAS 99-13.
+
+\begin{tabular}{ll}
+bought during last 5 years, whether & 89-11 \\
+bought or sold more & 89-11 \\
+bought or sold & 13\\
+net amount put in/take out if bought + sold & 89-11\\
+net amount put in if bought only & 89-11\\
+CASH FROM STOCKS & 89-11\\
+\end{tabular}
+
+\end{itemize}
+\end{document}
