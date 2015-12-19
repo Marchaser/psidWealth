@@ -6,18 +6,22 @@ local ntile 3
 local homeequity 1
 
 // group of entrepreneurs
-local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
+local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011
 local nYear: word count `yearName'
 // rank persistence
 forval iy = 1/`nYear' {
 	local y `: word `iy' of `yearName''
 	
 	if `homeequity'==1{
-		quiet rename wealthheq`y' wealth0`y'
+		quiet rename wealthM`y' wealth0`y'
 	}
 	else {
 		quiet rename wealth`y' wealth0`y'
 	}
+	
+	sum wealth0`y', d
+	// replace wealth0`y'=. if wealth0`y'>`r(p95)' | wealth0`y'<`r(p5)'
+	// replace wealth0`y'=. if ageH`y'<21 | ageH`y'>60
 	
 	if `weight'==1 {
 		quiet xtile wealthTile`y'=wealth0`y' [pw=weight`y'], n(`ntile')
@@ -27,7 +31,7 @@ forval iy = 1/`nYear' {
 	}
 }
 
-local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
+local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011
 local nYear: word count `yearName'
 local nYearM1 = `nYear'-1
 forval iy = 1/`nYearM1' {
@@ -66,31 +70,40 @@ label define gGroupLab 1 "Worker" ///
 2 "Entrepreneur"
 quiet label values gGroup gGroupLab
 
+/*
+twoway(scatter trans11 year if gGroup==1 & inrange(year,1984,1994), connect(l)) ///
+(scatter trans11 year if gGroup==1 & inrange(year,1999,2013), connect(l))
+
+twoway(scatter trans11 year if gGroup==4 & inrange(year,1984,1994), connect(l)) ///
+(scatter trans11 year if gGroup==4 & inrange(year,1999,2013), connect(l))
+
+twoway(scatter trans13 year if gGroup==1 & inrange(year,1984,1994), connect(l)) ///
+(scatter trans13 year if gGroup==1 & inrange(year,1999,2013), connect(l))
+
+twoway(scatter trans33 year if gGroup==1 & inrange(year,1984,1994), connect(l)) ///
+(scatter trans33 year if gGroup==1 & inrange(year,1999,2013), connect(l))
+
+twoway(scatter trans33 year if gGroup==2 & inrange(year,1984,1994), connect(l)) ///
+(scatter trans33 year if gGroup==2 & inrange(year,1999,2013), connect(l))
+*/
+
 twoway(scatter trans11 year if gGroup==1 & inrange(year,1984,1994), connect(l)) ///
 (scatter trans11 year if gGroup==1 & inrange(year,1999,2013), connect(l))
 
 twoway(scatter trans33 year if gGroup==2 & inrange(year,1984,1994), connect(l)) ///
 (scatter trans33 year if gGroup==2 & inrange(year,1999,2013), connect(l))
 
+twoway(scatter trans33 year if gGroup==1 & inrange(year,1984,1994), connect(l)) ///
+(scatter trans33 year if gGroup==1 & inrange(year,1999,2013), connect(l))
+
+
+twoway(scatter trans33 year if gGroup==2 & inrange(year,1984,1994), connect(l)) ///
+(scatter trans33 year if gGroup==2 & inrange(year,1999,2013), connect(l))
+
+
+/*
 line trans11 year if gGroup==1
 line trans33 year if gGroup==1
 line trans11 year if gGroup==2
 line trans33 year if gGroup==2
-
-mkmat trans* if _n==3, mat(temp)
-mata
-temp=st_matrix("temp")
-temp=rowshape(temp,3)
-temp = temp*temp
-st_matrix("temp",temp)
-end
-matrix list temp
-
-mkmat trans* if _n==11, mat(temp)
-mata
-temp=st_matrix("temp")
-temp=rowshape(temp,3)
-temp = temp*temp*temp*temp*temp
-st_matrix("temp",temp)
-end
-matrix list temp
+*/

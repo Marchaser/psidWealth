@@ -189,6 +189,7 @@ twoway line corrRetWGains year if year>=2001, by(wealthTile)
 */
 
 keep corrRet year
+drop if year==.
 // keep corrBusret corrRet corrRetWGains corrSret year
 sort year
 // twoway (scatter corrRet year if year<=1994, connect(l))(scatter corrRet year if year>=1999, connect(l))

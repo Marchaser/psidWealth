@@ -11,6 +11,19 @@ label define ER10004AL  ///
        8 "Other (used for recontacts and recombined families--these latter are usually Heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 1996 interview but prior to the 1997 interview)."  ///
        9 `"Neither Head nor Wife/"Wife" (if there is one) is a sample member and neither of them was a Head or Wife/"Wife" last year.  (Used primarily for underage splitoff children.)"'
 
+label define ER10035L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"  ///
+       9 "NA; DK; refused"
+
+label define ER10039L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.: not a homeowner"
+
 label define ER11212L  ///
        1 "Yes"  ///
        5 "No"  ///
@@ -139,6 +152,23 @@ label define ER11570L  ///
        9 "NA; refused"  ///
        0 `"Inap.:  no wife/"wife" in FU; did not receive any income in 1996; did not receive income from other assets in 1996"'
 
+label define ER11848L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"
+label define ER12222L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER12222L `n' "Actual number"  , modify
+}
+label define ER12222L       17 "At least some post-graduate work"  , modify
+label define ER12222L       99 "NA; DK"  , modify
+
 label define ER13008AL  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 `"Change in members other than Head or Wife/"Wife" only"'  ///
@@ -150,6 +180,18 @@ label define ER13008AL  ///
        7 "Female Head in 1997 with husband in institution--husband in FU in 1999 and is now Head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually Heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 1997 interview but prior to the 1999 interview)."  ///
        9 `"Neither Head nor Wife/"Wife" (if there is one) is a sample member and neither of them was a Head or Wife/"Wife" last year.  (Used primarily for underage splitoff children.)"'
+
+label define ER13040L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define ER13044L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.: not a homeowner"
 
 label define ER14349L  ///
        1 "Yes"  ///
@@ -778,6 +820,23 @@ label define ER15093L  ///
        9 "NA; refused"  ///
        0 "Inap.:  sold no stocks; put as much into stocks as took out; actual selling price of stocks was reported; selling price of stocks was $20,000 or more"
 
+label define ER15928L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"
+label define ER16516L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER16516L `n' "Actual number"  , modify
+}
+label define ER16516L       17 "At least some post-graduate work"  , modify
+label define ER16516L       99 "NA; DK"  , modify
+
 label define ER17007L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 `"Change in members other than head or wife/"wife" only"'  ///
@@ -789,6 +848,18 @@ label define ER17007L  ///
        7 "Female head in 1999 with husband in institution--husband in FU in 2001 and is now head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 1999 interview but prior to the 2001 interview)."  ///
        9 `"Neither head nor wife/"wife" (if there is one) is followable and neither of them was a head or wife/"wife" last year.  (Used primarily for underage splitoff children.)"'
+
+label define ER17043L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define ER17049L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.: not a homeowner"
 
 label define ER18489L  ///
        1 "Yes"  ///
@@ -1417,6 +1488,17 @@ label define ER19289L  ///
        9 "NA; refused"  ///
        0 "Inap.:  sold no stocks; put as much into stocks as took out; actual selling price of stocks was reported; selling price of stocks was $20,000 or more"
 
+label define ER19989L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"
+
 label define ER2005AL  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 `"Change in members other than Head or Wife/"Wife" only"'  ///
@@ -1428,6 +1510,32 @@ label define ER2005AL  ///
        7 "Female Head in 1993 with husband in institution--husband in FU in 1994 and is now Head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually Heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 1993 interview but prior to the 1994 interview)."  ///
        9 `"Neither Head nor Wife/"Wife" (if there is one) is a sample member and neither of them was a Head or Wife/"Wife" last year.  (Used primarily for underage splitoff children.)"'
+forvalues n = 14/96 {
+    label define ER2007L `n' "Actual age"  , modify
+}
+label define ER2007L       97 "Ninety-seven years of age or older"  , modify
+label define ER2007L       99 "NA; DK"  , modify
+label define ER2007L        0 "Wild code"  , modify
+
+label define ER2032L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"  ///
+       9 "DK; NA; refused"  ///
+       0 "Inap."
+
+label define ER2036L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.: not a homeowner"
+label define ER20457L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER20457L `n' "Actual number"  , modify
+}
+label define ER20457L       17 "At least some post-graduate work"  , modify
+label define ER20457L       99 "NA; DK"  , modify
 
 label define ER21007L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -1440,6 +1548,18 @@ label define ER21007L  ///
        7 "Female head in 2001 with husband in institution--husband in FU in 2003 and is now head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 2001 interview but prior to the 2003 interview)."  ///
        9 `"Neither head nor wife/"wife" (if there is one) is followable and neither of them was a head or wife/"wife" last year.  (Used primarily for underage splitoff children.)"'
+
+label define ER21042L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define ER21048L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  not a homeowner  (ER21042=5 or 8)"
 
 label define ER21857L  ///
        1 "Yes"  ///
@@ -2077,6 +2197,22 @@ label define ER22684L  ///
        9 "NA; refused"  ///
        0 "Inap.:  sold no stocks; put as much into stocks as took out; actual selling price of stocks was reported; selling price of stocks was $20,000 or more; NA, DK whether selling price of stocks was $20,000 or more"
 
+label define ER23426L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Native American"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Latino origin or descent"  ///
+       6 "Color besides black or white"  ///
+       7 "Other"  ///
+       9 "NA; DK"
+label define ER24148L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER24148L `n' "Actual number"  , modify
+}
+label define ER24148L       17 "At least some post-graduate work"  , modify
+label define ER24148L       99 "NA; DK"  , modify
+
 label define ER25007L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 `"Change in members other than head or wife/"wife" only"'  ///
@@ -2088,6 +2224,18 @@ label define ER25007L  ///
        7 "Female head in 2003 with husband in institution--husband in FU in 2005 and is now head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 2003 interview but prior to the 2005 interview)."  ///
        9 `"Neither head nor wife/"wife" (if there is one) is followable and neither of them was a head or wife/"wife" last year.  (Used primarily for underage splitoff children.)"'
+
+label define ER25028L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define ER25039L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  not a homeowner  (ER25028=5 or 8)"
 
 label define ER25838L  ///
        1 "Yes"  ///
@@ -2725,6 +2873,22 @@ label define ER26665L  ///
        9 "NA; refused"  ///
        0 "Inap.:  sold no stocks; put as much into stocks as took out; actual selling price of stocks was reported; selling price of stocks was $20,000 or more; NA, DK whether selling price of stocks was $20,000 or more"
 
+label define ER27393L  ///
+       1 "White"  ///
+       2 "Black, African-American, or Negro"  ///
+       3 "American Indian or Alaska Native"  ///
+       4 "Asian"  ///
+       5 "Native Hawaiian or Pacific Islander"  ///
+       7 "Other"  ///
+       9 "NA; DK"  ///
+       0 "Wild code"
+label define ER28047L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER28047L `n' "Actual number"  , modify
+}
+label define ER28047L       17 "At least some post-graduate work"  , modify
+label define ER28047L       99 "NA; DK"  , modify
+
 label define ER3096L  ///
        1 "Yes"  ///
        5 "No"  ///
@@ -2856,6 +3020,16 @@ label define ER3568L  ///
        9 "NA; refused"  ///
        0 `"Inap.:  no wife/"wife" in FU; did not receive any income in 1993"'
 
+label define ER3570L  ///
+       1 "Month"  ///
+       2 "3 months"  ///
+       3 "6 months"  ///
+       4 "Year"  ///
+       5 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 `"Inap.:  no wife/"wife" in FU; did not receive any income in 1993; did not receive income from other assets in 1993"'
+
 label define ER36007L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 `"Change in members other than head or wife/"wife" only"'  ///
@@ -2867,6 +3041,19 @@ label define ER36007L  ///
        7 "Female head in 2005 with husband in institution--husband in FU in 2007 and is now head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 2005 interview but prior to the 2007 interview)."  ///
        9 `"Neither head nor wife/"wife" (if there is one) is a sample member and neither of them was a head or wife/"wife" last year.  (Used primarily for underage splitoff children.)"'
+
+label define ER36028L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"  ///
+       9 "Wild code"
+
+label define ER36039L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.: not a homeowner  (ER36028=5 or 8)"
 
 label define ER36856L  ///
        1 "Yes"  ///
@@ -3961,6 +4148,39 @@ label define ER3815L  ///
        9 "NA; refused"  ///
        0 "Inap.: Latino sample family; core sample family but interview taken in Spanish; sold no stocks; put as much into stocks as took out; actual selling price of stocks was reported; selling price of stocks was $20,000 or more"
 
+label define ER3944L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"
+
+label define ER40565L  ///
+       1 "White"  ///
+       2 "Black, African-American, or Negro"  ///
+       3 "American Indian or Alaska Native"  ///
+       4 "Asian"  ///
+       5 "Native Hawaiian or Pacific Islander"  ///
+       7 "Other"  ///
+       9 "NA; DK"  ///
+       0 "Wild code"
+label define ER41037L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER41037L `n' "Actual number"  , modify
+}
+label define ER41037L       17 "At least some post-graduate work"  , modify
+label define ER41037L       99 "NA; DK"  , modify
+label define ER4158L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER4158L `n' "Actual number"  , modify
+}
+label define ER4158L       17 "At least some post-graduate work"  , modify
+label define ER4158L       99 "NA; DK"  , modify
+
 label define ER42007L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 `"Change in members other than head or wife/"wife" only"'  ///
@@ -3972,6 +4192,18 @@ label define ER42007L  ///
        7 "Female head in 2007 with husband in institution--husband in FU in 2009 and is now head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 2007 interview but prior to the 2009 interview)."  ///
        9 `"Neither head nor wife/"wife" (if there is one) is a sample member and neither of them was a head or wife/"wife" last year.  (Used primarily for underage splitoff children.)"'
+
+label define ER42029L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define ER42040L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  not a homeowner  (ER42029=5 or 8)"
 
 label define ER42847L  ///
        1 "Yes"  ///
@@ -4605,6 +4837,15 @@ label define ER43674L  ///
        9 "NA; refused"  ///
        0 "Inap.:  actual selling price of stocks was reported; bought stocks (ER43656=1); did not sell any stock (ER43669=5, 8, or 9); selling price of stocks $20,000 or more (ER43671=1); DK, NA, or RF whether selling price of stocks $20,000 or more (ER43671=8 or 9)"
 
+label define ER46543L  ///
+       1 "White"  ///
+       2 "Black, African-American, or Negro"  ///
+       3 "American Indian or Alaska Native"  ///
+       4 "Asian"  ///
+       5 "Native Hawaiian or Pacific Islander"  ///
+       7 "Other"  ///
+       9 "DK; NA"
+
 label define ER46936L  ///
        0 "No"  ///
        1 "Yes"
@@ -4620,6 +4861,12 @@ label define ER46948L  ///
 label define ER46962L  ///
        0 "No"  ///
        1 "Yes"
+label define ER46981L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER46981L `n' "Actual number"  , modify
+}
+label define ER46981L       17 "At least some post-graduate work"  , modify
+label define ER46981L       99 "DK; NA"  , modify
 
 label define ER47307L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -4632,6 +4879,18 @@ label define ER47307L  ///
        7 "Female Head in 2009 with husband in institution--husband in FU in 2011 and is now Head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually Heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 2009 interview but prior to the 2011 interview)."  ///
        9 `"Neither Head nor Wife/"Wife" (if there is one) is a sample member and neither of them was a Head or Wife/"Wife" last year.  (Used primarily for underage splitoff children.)"'
+
+label define ER47329L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define ER47345L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  FU pays rent or FU neither owns nor rents (ER47329=5 or 8)"
 
 label define ER48169L  ///
        1 "Yes"  ///
@@ -5249,6 +5508,36 @@ label define ER5004AL  ///
        7 "Female Head in 1994 with husband in institution--husband in FU in 1995 and is now Head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually Heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 1994 interview but prior to the 1995 interview)."  ///
        9 `"Neither Head nor Wife/"Wife" (if there is one) is a sample member and neither of them was a Head or Wife/"Wife" last year.  (Used primarily for underage splitoff children.)"'
+forvalues n = 14/96 {
+    label define ER5006L `n' "Actual age"  , modify
+}
+label define ER5006L       97 "Ninety-seven years of age or older"  , modify
+label define ER5006L       98 "NA; DK"  , modify
+label define ER5006L       99 "NA; DK"  , modify
+label define ER5006L        0 "Wild code"  , modify
+
+label define ER5031L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"  ///
+       9 "DK; NA; refused"
+
+label define ER5035L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.: not a homeowner"
+
+label define ER51904L  ///
+       1 "White"  ///
+       2 "Black, African-American, or Negro"  ///
+       3 "American Indian or Alaska Native"  ///
+       4 "Asian"  ///
+       5 "Native Hawaiian or Pacific Islander"  ///
+       7 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"
 
 label define ER52344L  ///
        0 "No"  ///
@@ -5265,6 +5554,12 @@ label define ER52352L  ///
 label define ER52366L  ///
        0 "No"  ///
        1 "Yes"
+label define ER52405L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER52405L `n' "Actual number"  , modify
+}
+label define ER52405L       17 "At least some post-graduate work"  , modify
+label define ER52405L       99 "DK; NA"  , modify
 
 label define ER53007L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -5277,6 +5572,18 @@ label define ER53007L  ///
        7 "Female Head in 2011 with husband in institution--husband in FU in 2013 and is now Head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually Heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 2011 interview but prior to the 2013 interview)."  ///
        9 `"Neither Head nor Wife/"Wife" (if there is one) is a sample member and neither of them was a Head or Wife/"Wife" last year.  (Used primarily for underage splitoff children.)"'
+
+label define ER53029L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define ER53045L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  FU pays rent or FU neither owns nor rents (ER53029=5 or 8)"
 
 label define ER53863L  ///
        1 "Yes"  ///
@@ -5365,6 +5672,13 @@ label define ER54346L  ///
        9 "NA; refused"  ///
        0 `"Inap.:  broke even; no Wife/"Wife" in FU  (ER54305=5); no income in 2012 (ER54306=5); DK, NA, or RF whether received income in 2012 (ER54306=8 or 9); did not receive income from rent in 2012 (ER54344=5); DK, NA, or RF whether received rent income in 2012 (ER54344=8 or 9)"'
 
+label define ER54361L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 `"Inap.:  no Wife/"Wife" in FU  (ER54305=5); no income in 2012 (ER54306=5); DK, NA, or RF whether received income in 2012 (ER54306=8 or 9)"'
+
 label define ER54363L  ///
        5 "Month"  ///
        6 "Year"  ///
@@ -5372,6 +5686,13 @@ label define ER54363L  ///
        8 "DK"  ///
        9 "NA; refused"  ///
        0 `"Inap.:  no Wife/"Wife" in FU  (ER54305=5); no income in 2012 (ER54306=5); DK, NA, or RF whether had any income in 2012 (ER54306=8 or 9); no income from dividends in 2012 (ER54361=5); DK, NA, or RF whether had income from dividends in 2012 (ER54361=8 or 9)"'
+
+label define ER54378L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 `"Inap.:  no Wife/"Wife" in FU  (ER54305=5); no income in 2012 (ER54306=5); DK, NA, or RF whether had any income in 2012 (ER54306=8 or 9)"'
 
 label define ER54380L  ///
        5 "Month"  ///
@@ -5402,6 +5723,13 @@ label define ER54610L  ///
        8 "DK"  ///
        9 "NA; refused"
 
+label define ER54611L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  does not own any real estate other than home (ER54610=5); DK, NA, or RF whether owns any real estate other than home (ER54610=8 or 9)"
+
 label define ER54613L  ///
        1 "Yes"  ///
        5 "No"  ///
@@ -5417,6 +5745,27 @@ label define ER54614L  ///
        0 "Inap.:  actual amount reported; does not own any real estate other than home (ER54610=5); DK, NA, or RF whether owns any real estate other than home (ER54610=8 or 9);  does not amount to $50,000 or more (ER54613=5); DK, NA, or RF whether it would amount to $50,000 or more (ER54613=8 or 9)"
 
 label define ER54615L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; does not own any real estate other than home (ER54610=5); DK, NA, or RF whether owns any real estate other than home (ER54610=8 or 9); amounts to $50,000 or more (ER54613=1); DK, NA, or RF whether it would amount to $50,000 or more (ER54613=8 or 9)"
+
+label define ER54617L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; does not own any real estate other than home (ER54610=5); DK, NA, or RF whether owns any real estate other than home (ER54610=8 or 9)"
+
+label define ER54618L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; does not own any real estate other than home (ER54610=5); DK, NA, or RF whether owns any real estate other than home (ER54610=8 or 9); does not amount to $50,000 or more (ER54617=5); DK, NA, or RF whether it would amount to $50,000 or more (ER54617=8 or 9)"
+
+label define ER54619L  ///
        1 "Yes"  ///
        5 "No"  ///
        8 "DK"  ///
@@ -5471,6 +5820,27 @@ label define ER54628L  ///
        9 "NA; refused"  ///
        0 "Inap.:  actual amount reported; does not own a farm or business (ER54624=5); DK, NA, or RF whether owns a farm or business (ER54624=8 or 9); amounts to $50,000 or more (ER54626=1); DK, NA, or RF whether it amounts to $50,000 or more (ER54626=8 or 9)"
 
+label define ER54630L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; does not own a farm or business (ER54624=5); DK, NA, or RF whether owns a farm or business (ER54624=8 or 9)"
+
+label define ER54631L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; does not own a farm or business (ER54624=5); DK, NA, or RF whether owns a farm or business (ER54624=8 or 9);  does not amount to $50,000 or more (ER54630=5);  DK, NA, or RF whether it amounts to $50,000 or more (ER54630=8 or 9)"
+
+label define ER54632L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; does not own a farm or business (ER54624=5); DK, NA, or RF whether owns a farm or business (ER54624=8 or 9);  it amounts to $50,000 or more (ER54630=5);  DK, NA, or RF whether it amounts to $50,000 or more (ER54630=8 or 9)"
+
 label define ER54633L  ///
        1 "Yes"  ///
        5 "No"  ///
@@ -5501,6 +5871,48 @@ label define ER54637L  ///
 label define ER54638L  ///
        1 "W16 >0 but no dividend income reported"  ///
        5 "All others"
+
+label define ER54653L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"
+
+label define ER54654L  ///
+       1 "Mostly stocks"  ///
+       2 "Mostly interest earning"  ///
+       3 "Split"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  does not have money in private annunities or IRAs (ER54653=5); DK, NA, or RF whether has money in private annunities or IRAs (ER54653=8 or 9)"
+
+label define ER54656L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; no private annuities or IRAs (ER54653=5); DK, NA, or RF whether has private annuities or IRAs (ER54653=8 or 9)"
+
+label define ER54657L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; no private annuities or IRAs (ER54653=5); DK, NA, or RF whether has private annuities or IRAs (ER54653=8 or 9); amounts to less than $50,000 (ER54656=5);  DK, NA, or RF whether it amounts to $50,000 or more (ER54656=8 or 9)"
+
+label define ER54658L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; no private annuities or IRAs (ER54653=5); DK, NA, or RF whether has private annuities or IRAs (ER54653=8 or 9); amounts to $50,000 or more (ER54656=1);  DK, NA, or RF whether it amounts to $50,000 or more (ER54656=8 or 9)"
+
+label define ER54659L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.:  actual amount reported; no private annuities or IRAs (ER54653=5); DK, NA, or RF whether has private annuities or IRAs (ER54653=8 or 9); amounts to less than $50,000 (ER54656=5);  DK, NA, or RF whether it amounts to $50,000 or more (ER54656=8 or 9); amounts to less than $100,000 (ER54657=5); DK, NA, or RF whether it amounts to $100,000 or more (ER54657=8 or 9)"
 
 label define ER54660L  ///
        1 "Yes, one or more"  ///
@@ -5754,6 +6166,16 @@ label define ER54774L  ///
        9 "NA; refused"  ///
        0 "Inap.:  actual amount reported; did not sell any shares of stock (ER54763=1 or 5); DK, NA, or RF whether sold any shares of stock (ER54763=8 or 9); sold $20,000 or more (ER54771=1); DK, NA, or RF whether sold $20,000 or more (ER54771=8 or 9)"
 
+label define ER57659L  ///
+       1 "White"  ///
+       2 "Black, African-American, or Negro"  ///
+       3 "American Indian or Alaska Native"  ///
+       4 "Asian"  ///
+       5 "Native Hawaiian or Pacific Islander"  ///
+       7 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"
+
 label define ER58153L  ///
        0 "No"  ///
        1 "Yes"
@@ -5769,6 +6191,11 @@ label define ER58163L  ///
 label define ER58179L  ///
        0 "No"  ///
        1 "Yes"
+label define ER58223L        0 "Completed no grades of school"  , modify
+forvalues n = 1/17 {
+    label define ER58223L `n' "Actual number"  , modify
+}
+label define ER58223L       99 "DK; NA"  , modify
 
 label define ER6096L  ///
        1 "Yes"  ///
@@ -5899,6 +6326,33 @@ label define ER6569L  ///
        9 "NA; refused"  ///
        0 `"Inap.:  no wife/"wife" in FU; did not receive any income in 1994"'
 
+label define ER6571L  ///
+       1 "Month"  ///
+       2 "3 months"  ///
+       3 "6 months"  ///
+       4 "Year"  ///
+       5 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 `"Inap.:  no wife/"wife" in FU; did not receive any income in 1994; did not receive income from other assets in 1994"'
+
+label define ER6814L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"
+label define ER6998L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER6998L `n' "Actual number"  , modify
+}
+label define ER6998L       17 "At least some post-graduate work"  , modify
+label define ER6998L       99 "NA; DK"  , modify
+
 label define ER7004AL  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 `"Change in members other than Head or Wife/"Wife" only"'  ///
@@ -5910,6 +6364,26 @@ label define ER7004AL  ///
        7 "Female Head in 1995 with husband in institution--husband in FU in 1996 and is now Head"  ///
        8 "Other (used for recontacts and recombined families--these latter are usually Heads and wives who have parted for a wave or more, been interviewed separately, and who have reconciled at some time since the 1995 interview but prior to the 1996 interview)."  ///
        9 `"Neither Head nor Wife/"Wife" (if there is one) is a sample member and neither of them was a Head or Wife/"Wife" last year.  (Used primarily for underage splitoff children.)"'
+forvalues n = 14/96 {
+    label define ER7006L `n' "Actual age"  , modify
+}
+label define ER7006L       97 "Ninety-seven years of age or older"  , modify
+label define ER7006L       98 "DK"  , modify
+label define ER7006L       99 "NA"  , modify
+label define ER7006L        0 "Wild code"  , modify
+
+label define ER7031L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"  ///
+       9 "DK; NA; refused"
+
+label define ER7035L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       8 "DK"  ///
+       9 "NA; refused"  ///
+       0 "Inap.: not a homeowner"
 
 label define ER8319L  ///
        1 "Yes"  ///
@@ -6034,6 +6508,23 @@ label define ER8688L  ///
        8 "DK"  ///
        9 "NA; refused"  ///
        0 `"Inap.:  no wife/"wife" in FU; did not receive any income in 1995; did not receive income from other assets in 1995"'
+
+label define ER9060L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
+       8 "DK"  ///
+       9 "NA; refused"
+label define ER9249L        0 "Completed no grades of school"  , modify
+forvalues n = 1/16 {
+    label define ER9249L `n' "Actual number"  , modify
+}
+label define ER9249L       17 "At least some post-graduate work"  , modify
+label define ER9249L       99 "NA; DK"  , modify
 
 label define S102L  ///
        0 "No"  ///
@@ -6161,6 +6652,39 @@ label define V10010L  ///
        6 "Some female other than 1983 Head got married and her husband (nonsample member) is now Head (Used primarily for married female splitoffs)"  ///
        7 "Female Head in 1983 with husband in institution--husband in FU in 1984 and is now Head"  ///
        8 "Other (used for recombined families--these are usually 1968 Heads and Wives who have parted for a year or more, been interviewed separately, and who have reconciled at some time since the 1983 interview but prior to the 1984 interview"
+forvalues n = 17/97 {
+    label define V1008L `n' "Actual age of Head"  , modify
+}
+label define V1008L       98 "Ninety-eight years or older"  , modify
+label define V1008L       99 "NA"  , modify
+
+label define V103L  ///
+       1 "Owns home (or trailer, fully or jointly)"  ///
+       5 "Rents (or shares rent)"  ///
+       8 "Neither (owns nor rents)"
+
+label define V104L  ///
+       1 "First mortgage only"  ///
+       2 "Two mortgages"  ///
+       5 "No mortgage"  ///
+       9 "NA"  ///
+       0 "Inap.: does not own property"
+forvalues n = 17/97 {
+    label define V10419L `n' "Actual age"  , modify
+}
+label define V10419L       98 "98 years of age or older"  , modify
+label define V10419L       99 "NA"  , modify
+
+label define V10437L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V10438L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V10437=5 or 8)"
 
 label define V10872L  ///
        1 "Yes"  ///
@@ -6343,6 +6867,34 @@ label define V10936L  ///
        8 "DK"  ///
        9 "NA"  ///
        0 "Inap.: no other debts (V10932=5 or 9); dollar amount given (V10933=000001-999996 or 999999); debts would amount to $5,000 or more (V10934=1, 8 or 9)"
+
+label define V10996L  ///
+       0 "None"  ///
+       1 "One"  ///
+       2 "Two"  ///
+       3 "Three"  ///
+       4 "Four"  ///
+       5 "Five"  ///
+       6 "Six"  ///
+       7 "Seven"  ///
+       8 "Eight"  ///
+       9 "Nine"  ///
+      10 "Ten"  ///
+      11 "Eleven"  ///
+      12 "Twelve; GED"  ///
+      13 "First year of college"  ///
+      14 "Second year of college, with or without Associate`=char(146)'s degree"  ///
+      15 "Third year of college"  ///
+      16 "Fourth year of college; college graduate"  ///
+      17 "At least some postgraduate work"  ///
+      99 "NA; DK"
+
+label define V11055L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 forvalues n = 1/99 {
     label define V11079L `n' "Actual family weight"  , modify
 }
@@ -6369,11 +6921,43 @@ label define V11112L  ///
        6 "Some female other than 1984 Head got married and her husband (nonsample member) is now Head  (Used primarily for married female splitoffs)"  ///
        7 "Female Head in 1984 with husband in institution--husband in FU in 1985 and is now Head"  ///
        8 "Other (used for recombined families)--these are usually 1968 Heads and Wives who have parted for a year or more, been interviewed separately, and who have reconciled at some time since the 1984 interview but prior to the 1985 interview"
+forvalues n = 16/97 {
+    label define V11606L `n' "Actual age"  , modify
+}
+label define V11606L       98 "Ninety-eight years of age or older"  , modify
+label define V11606L       99 "NA"  , modify
+
+label define V11618L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V11619L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V11618=5 or 8)"
+forvalues n = 1/96 {
+    label define V117L `n' "Actual age"  , modify
+}
+label define V117L       97 "Ninety-seven years or older"  , modify
+label define V117L       98 "DK"  , modify
+label define V117L       99 "NA"  , modify
 
 label define V11888L  ///
        1 "Yes"  ///
        5 "No"  ///
        9 "NA; DK"
+
+label define V11938L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       7 "Other"  ///
+       8 "More than 2 mentions"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: no second mention"
 
 label define V1201L  ///
        0 "None"  ///
@@ -6386,6 +6970,10 @@ label define V1201L  ///
        7 "$7500 - 9999"  ///
        8 "$10,000 or more"  ///
        9 "NA"
+forvalues n = 16/93 {
+    label define V1239L `n' "Actual age"  , modify
+}
+label define V1239L       99 "NA age"  , modify
 
 label define V12510L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6398,6 +6986,41 @@ label define V12510L  ///
        7 "Female Head in 1985 with husband in institution--husband in FU in 1986 and is now Head"  ///
        8 "Other (used for recombined families--these are usually 1968 Heads and Wives who have parted for a year or more, been interviewed separately, and who have reconciled at some time since the 1985 interview but prior to the 1986 interview"
 
+label define V1264L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V1265L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA"  ///
+       0 "Inap.: does not own home"
+forvalues n = 17/97 {
+    label define V13011L `n' "Actual age"  , modify
+}
+label define V13011L       98 "Ninety-eight years of age or older"  , modify
+label define V13011L       99 "NA"  , modify
+
+label define V13023L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V13024L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V13023=5 or 8)"
+
+label define V13565L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       7 "Other"  ///
+       9 "NA; DK"
+
 label define V13710L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 `"Change in members other than Head or Wife/"Wife" only"'  ///
@@ -6408,6 +7031,30 @@ label define V13710L  ///
        6 "Some female other than 1986 Head got married and her husband (nonsample member) is now Head  (Used primarily for married female splitoffs)"  ///
        7 "Female Head in 1986 with husband in institution--husband in FU in 1987 and is now Head"  ///
        8 "Other (used for recombined families)--these are usually 1968 Heads and Wives who have parted for a year or more, been interviewed separately, and who have reconciled at some time since the 1986 interview but prior to the 1987 interview"
+forvalues n = 17/97 {
+    label define V14114L `n' "Actual age"  , modify
+}
+label define V14114L       98 "Ninety-eight years of age or older"  , modify
+label define V14114L       99 "NA"  , modify
+
+label define V14126L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V14127L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V14126=5 or 8)"
+
+label define V14612L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       7 "Other"  ///
+       9 "NA; DK"
 
 label define V14810L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6420,6 +7067,37 @@ label define V14810L  ///
        7 "Female Head in 1987 with husband in institution--husband in FU in 1988 and is now Head"  ///
        8 "Other (used for recombined families)--these are usually 1968 Heads and Wives who have parted for a year or more, been interviewed separately, and who have reconciled at some time since the 1987 interview but prior to the 1988 interview"
 
+label define V1490L  ///
+       1 "White"  ///
+       2 "Negro"  ///
+       3 "Spanish American, Puerto Rican, Mexican, Cuban"  ///
+       7 "Other (Including Oriental, Pilipino)"  ///
+       9 "NA"
+forvalues n = 17/97 {
+    label define V15130L `n' "Actual age"  , modify
+}
+label define V15130L       98 "Ninety-eight years of age or older"  , modify
+label define V15130L       99 "NA"  , modify
+
+label define V15140L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V15141L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V15140=5 or 8)"
+
+label define V16086L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       7 "Other"  ///
+       9 "NA; DK"
+
 label define V16310L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 `"Change in members other than Head or Wife/"Wife" only"'  ///
@@ -6430,6 +7108,22 @@ label define V16310L  ///
        6 "Some female other than 1988 Head got married and her husband (nonsample member) is now Head (Used primarily for married female splitoffs)"  ///
        7 "Female Head in 1988 with husband in institution--husband in FU in 1989 and is now Head"  ///
        8 "Other (used for recombined families)--these are usually 1968 Heads and Wives who have parted for a year or more, been interviewed separately, and who have reconciled at some time since the 1988 interview but prior to the 1989 interview"
+forvalues n = 18/97 {
+    label define V16631L `n' "Actual age"  , modify
+}
+label define V16631L       98 "Ninety-eight years of age or older"  , modify
+label define V16631L       99 "NA"  , modify
+
+label define V16641L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V16642L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V16641=5 or 8)"
 
 label define V17299L  ///
        1 "Yes"  ///
@@ -6639,11 +7333,47 @@ label define V17362L  ///
        9 "NA; DK"  ///
        0 "Inap.: bought no stocks (V17360=5 or 9); sold no stocks (V17361=5 or 9)"
 
+label define V17366L  ///
+       1 "Less than $5,000"  ///
+       2 "$5,000 or more but less than $20,000"  ///
+       3 "$20,000 or more but less than $50,000"  ///
+       4 "$50,000 or more but less than $100,000"  ///
+       5 "$100,000 or more"  ///
+       6 "Less than $20,000 but NA/DK whether $5,000 or more"  ///
+       7 "$20,000 or more but NA/DK whether $50,000 or more"  ///
+       8 "$50,000 or more but NA/DK whether $100,000 or more"  ///
+      97 "NA/DK whether put any money into stocks"  ///
+      98 "Refused or DK value of stocks and no further information from bracket questions"  ///
+      99 "NA/DK value of stocks and no further information from bracket questions"  ///
+       0 "Inap.: the value in V17365 above was not imputed; bought no stocks (V17360=5); put as much into stocks as took out (V17362=3)"
+
 label define V17367L  ///
        1 "Yes"  ///
        5 "No"  ///
        9 "NA; DK"  ///
        0 "Inap.: put as much into stocks as took out (V17362=3 or 9)"
+
+label define V17369L  ///
+       1 "Less than $5,000"  ///
+       2 "$5,000 or more but less than $20,000"  ///
+       3 "$20,000 or more but less than $50,000"  ///
+       4 "$50,000 or more but less than $100,000"  ///
+       5 "$100,000 or more"  ///
+       6 "Less than $20,000 but NA/DK whether $5,000 or more"  ///
+       7 "$20,000 or more but NA/DK whether $50,000 or more"  ///
+       8 "$50,000 or more but NA/DK whether $100,000 or more"  ///
+      97 "NA/DK whether sold any stocks"  ///
+      98 "Refused or DK value of stocks and no further information from bracket questions"  ///
+      99 "NA value of stocks and no further information from bracket questions"  ///
+       0 "Inap.: the value in V17368 above was not imputed; put as much into stocks as took out (V17362=3); sold no stocks (V17367=5)"
+
+label define V17483L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       7 "Other"  ///
+       9 "NA; DK"
 
 label define V17710L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6655,6 +7385,22 @@ label define V17710L  ///
        6 "Some female other than 1989 Head got married and her husband (nonsample member) is now Head (Used primarily for married female splitoffs)"  ///
        7 "Female Head in 1989 with husband in institution--husband in FU in 1990 and is now Head"  ///
        8 "Other (used for recombined families--these are usually 1968 Heads and Wives who have parted for a year or more, been interviewed separately, and who have reconciled at some time since the 1989 interview but prior to the 1990 interview)"
+forvalues n = 17/97 {
+    label define V18049L `n' "Actual age"  , modify
+}
+label define V18049L       98 "Ninety-eight years of age or older"  , modify
+label define V18049L       99 "NA"  , modify
+
+label define V18072L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V18073L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V18072=5 or 8)"
 
 label define V1809L  ///
        0 "No change in family members"  ///
@@ -6667,9 +7413,26 @@ label define V1809L  ///
        7 "Female Head in 1970 with husband in institution  - husband in DU in 1971 and now Head"  ///
        8 "Other"
 
+label define V181L  ///
+       1 "White"  ///
+       2 "Negro"  ///
+       3 "Puerto Rican, Mexican"  ///
+       7 "Other (including Oriental, Pilipino)"  ///
+       9 "NA"
+
 label define V18703L  ///
        1 "Yes"  ///
        5 "No"  ///
+       9 "NA; DK"
+
+label define V18814L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
        9 "NA; DK"
 
 label define V19010L  ///
@@ -6694,6 +7457,54 @@ label define V1902L  ///
        7 "$7500-9999"  ///
        8 "$10,000 or more"  ///
        9 "NA"
+forvalues n = 17/97 {
+    label define V19349L `n' "Actual age"  , modify
+}
+label define V19349L       98 "Ninety-eight years of age or older"  , modify
+label define V19349L       99 "NA"  , modify
+
+label define V19372L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V19373L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V19372=5 or 8)"
+forvalues n = 15/97 {
+    label define V1942L `n' "Actual age"  , modify
+}
+label define V1942L       98 "Ninety-eight years of age or older"  , modify
+label define V1942L       99 "NA, DK"  , modify
+
+label define V1967L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V1968L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA, DK"  ///
+       0 "Inap.: does not own home"
+
+label define V20114L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
+       9 "NA; DK"
+forvalues n = 1/16 {
+    label define V20198L `n' "Actual grade of school completed"  , modify
+}
+label define V20198L       17 "Completed at least some postgraduate work"  , modify
+label define V20198L       99 "NA; DK"  , modify
+label define V20198L        0 "Inap: completed no grades of school"  , modify
 
 label define V20310L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6705,6 +7516,38 @@ label define V20310L  ///
        6 "Some female other than 1991 Head got married and her husband (nonsample member) is now Head  (Used primarily for married female splitoffs)"  ///
        7 "Female Head in 1991 with husband in institution--husband in FU in 1992 and is now Head"  ///
        8 "Other (used for recombined families)--these are usually 1968 Heads and Wives who have parted for a year or more, been interviewed separately, and who have reconciled at some time since the 1991 interview but prior to the 1992 interview"
+forvalues n = 14/97 {
+    label define V20651L `n' "Actual age"  , modify
+}
+label define V20651L       98 "Ninety-eight years of age or older"  , modify
+label define V20651L       99 "NA"  , modify
+
+label define V20672L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V20673L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V20672=5 or 8)"
+
+label define V21420L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
+       9 "NA; DK"
+forvalues n = 1/16 {
+    label define V21504L `n' "Actual grade of school completed"  , modify
+}
+label define V21504L       17 "At least some post-graduate work"  , modify
+label define V21504L       99 "NA; DK"  , modify
+label define V21504L        0 "Inap: completed no grades of school"  , modify
 
 label define V21608L  ///
        0 "No change; no movers-in or movers-out of the family."  ///
@@ -6795,6 +7638,45 @@ label define V21928L  ///
        9 "NA; DK"  ///
        0 `"Inap.:  no wife/"wife"; none"'
 
+label define V2202L  ///
+       1 "White"  ///
+       2 "Negro"  ///
+       3 "Spanish American, Puerto Rican, Mexican, Cuban"  ///
+       7 "Other (including Oriental, Filipino)"  ///
+       9 "NA"
+forvalues n = 14/97 {
+    label define V22406L `n' "Actual age"  , modify
+}
+label define V22406L       98 "Ninety-eight years of age or older"  , modify
+label define V22406L       99 "NA"  , modify
+
+label define V22427L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V22428L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner"
+
+label define V23276L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "American Indian, Aleut, Eskimo"  ///
+       4 "Asian, Pacific Islander"  ///
+       5 "Mentions Latino origin or descent"  ///
+       6 "Mentions color other than black or white"  ///
+       7 "Other"  ///
+       9 "NA; DK"
+forvalues n = 1/16 {
+    label define V23333L `n' "Actual number"  , modify
+}
+label define V23333L       17 "At least some post-graduate work"  , modify
+label define V23333L       99 "NA; DK"  , modify
+label define V23333L        0 "Inap: completed no grades of school"  , modify
+
 label define V2410L  ///
        0 "No change in family members"  ///
        1 "Change in members other than Head or Wife"  ///
@@ -6816,6 +7698,28 @@ label define V2503L  ///
        6 "$5000 - 7499"  ///
        7 "$7500 - 9999"  ///
        8 "$10,000 or more"  ///
+       9 "NA"
+forvalues n = 17/96 {
+    label define V2542L `n' "Actual age"  , modify
+}
+label define V2542L       99 "NA age"  , modify
+
+label define V2566L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V2567L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: does not own home"
+
+label define V2828L  ///
+       1 "White"  ///
+       2 "Negro"  ///
+       3 "Spanish American; Puerto Rican; Mexican; Cuban"  ///
+       7 "Other (including Oriental, Filipino)"  ///
        9 "NA"
 
 label define V3010L  ///
@@ -6840,6 +7744,22 @@ label define V3056L  ///
        7 "$7500 - 9999"  ///
        8 "$10,000 and over"  ///
        9 "NA"
+forvalues n = 17/97 {
+    label define V3095L `n' "Actual age"  , modify
+}
+label define V3095L       99 "NA"  , modify
+
+label define V3108L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V3300L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 
 label define V3410L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6862,6 +7782,22 @@ label define V3468L  ///
        6 "$5000 - 7499"  ///
        7 "$7500 - 9999"  ///
        8 "$10,000 or more"  ///
+       9 "NA"
+forvalues n = 17/93 {
+    label define V3508L `n' "Actual age"  , modify
+}
+label define V3508L       99 "NA; DK"  , modify
+
+label define V3522L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V3720L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
        9 "NA"
 
 label define V3810L  ///
@@ -6886,6 +7822,44 @@ label define V3868L  ///
        7 "$7500 - 9999"  ///
        8 "$10,000 or more"  ///
        9 "NA"
+forvalues n = 16/97 {
+    label define V3921L `n' "Actual age"  , modify
+}
+label define V3921L       98 "Ninety-eight years of age or older"  , modify
+label define V3921L       99 "NA; DK age"  , modify
+
+label define V3939L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V4093L  ///
+       0 "None"  ///
+       1 "One"  ///
+       2 "Two"  ///
+       3 "Three"  ///
+       4 "Four"  ///
+       5 "Five"  ///
+       6 "Six"  ///
+       7 "Seven"  ///
+       8 "Eight"  ///
+       9 "Nine"  ///
+      10 "Ten"  ///
+      11 "Eleven"  ///
+      12 "Twelve"  ///
+      13 "Thirteen"  ///
+      14 "Fourteen"  ///
+      15 "Fifteen"  ///
+      16 "Sixteen"  ///
+      17 "Seventeen or more"  ///
+      99 "NA; DK"
+
+label define V4204L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 
 label define V4310L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6897,6 +7871,44 @@ label define V4310L  ///
        6 "Some female in FU other than 1975 Head got married and non-sample member is now Head"  ///
        7 "Female Head in 1975 with husband in institution--husband in DU in 1976 and now Head"  ///
        8 "Other"
+forvalues n = 16/97 {
+    label define V4436L `n' "Actual age"  , modify
+}
+label define V4436L       98 "Ninety-eight years of age or older"  , modify
+label define V4436L       99 "NA; DK"  , modify
+
+label define V4450L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V4684L  ///
+       0 "None"  ///
+       1 "One"  ///
+       2 "Two"  ///
+       3 "Three"  ///
+       4 "Four"  ///
+       5 "Five"  ///
+       6 "Six"  ///
+       7 "Seven"  ///
+       8 "Eight"  ///
+       9 "Nine"  ///
+      10 "Ten"  ///
+      11 "Eleven"  ///
+      12 "Twelve; GED"  ///
+      13 "Thirteen"  ///
+      14 "Fourteen"  ///
+      15 "Fifteen"  ///
+      16 "Sixteen"  ///
+      17 "Seventeen or more"  ///
+      99 "NA; DK"
+
+label define V5096L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 
 label define V5210L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6908,6 +7920,15 @@ label define V5210L  ///
        6 "Some female in FU other than 1976 Head got married and non-sample member is now Head"  ///
        7 "Female Head in 1976 with husband in institution--husband in DU in 1977 and now Head"  ///
        8 "Other"
+forvalues n = 17/95 {
+    label define V5350L `n' "Actual age of Head"  , modify
+}
+label define V5350L       99 "NA"  , modify
+
+label define V5364L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
 
 label define V542L  ///
        0 "No change in family members"  ///
@@ -6920,6 +7941,34 @@ label define V542L  ///
        7 "Female Head in 1968 with husband in institution; husband in DU in 1969 and now Head"  ///
        9 "NA"
 
+label define V5608L  ///
+       0 "None"  ///
+       1 "One"  ///
+       2 "Two"  ///
+       3 "Three"  ///
+       4 "Four"  ///
+       5 "Five"  ///
+       6 "Six"  ///
+       7 "Seven"  ///
+       8 "Eight"  ///
+       9 "Nine"  ///
+      10 "Ten"  ///
+      11 "Eleven"  ///
+      12 "Twelve; GED"  ///
+      13 "Thirteen"  ///
+      14 "Fourteen"  ///
+      15 "Fifteen"  ///
+      16 "Sixteen"  ///
+      17 "Seventeen or more"  ///
+      99 "NA; DK"
+
+label define V5662L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
+
 label define V5710L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
        1 "Change in members other than Head or Wife"  ///
@@ -6930,6 +7979,39 @@ label define V5710L  ///
        6 "Some female in FU other than 1977 Head got married and nonsample member is now Head"  ///
        7 "Female Head in 1977 with husband in institution--husband in DU in 1978 and is now Head"  ///
        8 "Other"
+forvalues n = 16/96 {
+    label define V5850L `n' "Actual age"  , modify
+}
+label define V5850L       99 "NA"  , modify
+
+label define V5864L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V593L  ///
+       1 "Owns home (or trailer, fully or jointly)"  ///
+       5 "Rents"  ///
+       8 "Neither owns nor rents"
+
+label define V594L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA"  ///
+       0 "Inap.: do not own home"
+label define V6157L        0 "None"  , modify
+forvalues n = 1/16 {
+    label define V6157L `n' "Actual number of grades"  , modify
+}
+label define V6157L       17 "Seventeen or more"  , modify
+label define V6157L       99 "NA; DK"  , modify
+
+label define V6209L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 
 label define V6310L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6941,6 +8023,49 @@ label define V6310L  ///
        6 "Some female in FU other than 1978 Head got married and her husband is now Head"  ///
        7 "Female Head in 1978 with husband in institution--husband in FU in 1978 and is now Head"  ///
        8 "Other"
+forvalues n = 17/97 {
+    label define V6462L `n' "Actual age"  , modify
+}
+label define V6462L       99 "NA"  , modify
+
+label define V6479L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V6480L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: does not own/is not buying; 5 or 8 in V6479"
+
+label define V6754L  ///
+       0 "None"  ///
+       1 "One"  ///
+       2 "Two"  ///
+       3 "Three"  ///
+       4 "Four"  ///
+       5 "Five"  ///
+       6 "Six"  ///
+       7 "Seven"  ///
+       8 "Eight"  ///
+       9 "Nine"  ///
+      10 "Ten"  ///
+      11 "Eleven"  ///
+      12 "Twelve; GED"  ///
+      13 "Thirteen"  ///
+      14 "Fourteen"  ///
+      15 "Fifteen"  ///
+      16 "Sixteen"  ///
+      17 "Seventeen or more"  ///
+      99 "NA; DK"
+
+label define V6802L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 
 label define V6910L  ///
        0 "No change; no movers-in or movers-out of the family."  ///
@@ -6952,6 +8077,50 @@ label define V6910L  ///
        6 "Some female in FU other than 1979 Head got married and her husband is now Head."  ///
        7 "Female Head in 1979 with husband in institution--husband in FU in 1980 and is now Head."  ///
        8 "Other"
+forvalues n = 16/97 {
+    label define V7067L `n' "Actual age"  , modify
+}
+label define V7067L       98 "Ninety-eight years of age or older"  , modify
+label define V7067L       99 "NA"  , modify
+
+label define V7084L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V7085L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: does not own/is not buying; V7084=5 or 8"
+
+label define V7387L  ///
+       0 "None"  ///
+       1 "One"  ///
+       2 "Two"  ///
+       3 "Three"  ///
+       4 "Four"  ///
+       5 "Five"  ///
+       6 "Six"  ///
+       7 "Seven"  ///
+       8 "Eight"  ///
+       9 "Nine"  ///
+      10 "Ten"  ///
+      11 "Eleven"  ///
+      12 "Twelve; GED"  ///
+      13 "Thirteen"  ///
+      14 "Fourteen"  ///
+      15 "Fifteen"  ///
+      16 "Sixteen"  ///
+      17 "Seventeen or more"  ///
+      99 "NA; DK"
+
+label define V7447L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 
 label define V7510L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6963,6 +8132,56 @@ label define V7510L  ///
        6 "Some female in FU other than 1980 Head got married and her husband is now Head"  ///
        7 "Female Head in 1980 with husband in institution--husband in FU in 1981 and is now Head"  ///
        8 "Other"
+forvalues n = 17/97 {
+    label define V7658L `n' "Actual age"  , modify
+}
+label define V7658L       98 "98 years of age or older"  , modify
+label define V7658L       99 "NA"  , modify
+
+label define V7675L  ///
+       1 "Owns or is buying house or trailer (fully or jointly)"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V7676L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: does not own/is not buying; V7675=5 or 8"
+
+label define V801L  ///
+       1 "White"  ///
+       2 "Negro"  ///
+       3 "Puerto Rican, Mexican, Cuban"  ///
+       7 "Other (including Oriental, Pilipino)"
+
+label define V8039L  ///
+       0 "None"  ///
+       1 "One"  ///
+       2 "Two"  ///
+       3 "Three"  ///
+       4 "Four"  ///
+       5 "Five"  ///
+       6 "Six"  ///
+       7 "Seven"  ///
+       8 "Eight"  ///
+       9 "Nine"  ///
+      10 "Ten"  ///
+      11 "Eleven"  ///
+      12 "Twelve; GED"  ///
+      13 "Thirteen"  ///
+      14 "Fourteen"  ///
+      15 "Fifteen"  ///
+      16 "Sixteen"  ///
+      17 "Seventeen or more"  ///
+      99 "NA; DK"
+
+label define V8099L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 
 label define V8210L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6974,6 +8193,44 @@ label define V8210L  ///
        6 "Some female in FU other than 1981 Head got married and her husband is now Head"  ///
        7 "Female Head in 1981 with husband in institution--husband in FU in 1982 and is now Head"  ///
        8 "Other"
+forvalues n = 17/97 {
+    label define V8352L `n' "Actual age"  , modify
+}
+label define V8352L       98 "Ninety-eight years of age or older"  , modify
+label define V8352L       99 "NA"  , modify
+
+label define V8364L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V8663L  ///
+       0 "None"  ///
+       1 "One"  ///
+       2 "Two"  ///
+       3 "Three"  ///
+       4 "Four"  ///
+       5 "Five"  ///
+       6 "Six"  ///
+       7 "Seven"  ///
+       8 "Eight"  ///
+       9 "Nine"  ///
+      10 "Ten"  ///
+      11 "Eleven"  ///
+      12 "Twelve; GED"  ///
+      13 "First year of college"  ///
+      14 "Second year of college, with or without Associate`=char(146)'s degree"  ///
+      15 "Third year of college"  ///
+      16 "Fourth year of college; college graduate"  ///
+      17 "At least some postgraduate work"  ///
+      99 "NA; DK"
+
+label define V8723L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 
 label define V8810L  ///
        0 "No change; no movers-in or movers-out of the family"  ///
@@ -6985,8 +8242,54 @@ label define V8810L  ///
        6 "Some female other than 1982 Head got married and her husband (nonsample member) is now Head (Used primarily for married female splitoffs)"  ///
        7 "Female Head in 1982 with husband in institution--husband in FU in 1983 and is now Head"  ///
        8 "Other (used for recombined families)--these are usually 1968 Heads and Wives who have parted for a year or more, been interviewed separately, and who have reconciled at some time since the 1982 interview but prior to the 1983 interview"
+forvalues n = 14/97 {
+    label define V8961L `n' "Actual age"  , modify
+}
+label define V8961L       98 "Ninety-eight years of age or older"  , modify
+label define V8961L       99 "NA"  , modify
+
+label define V8974L  ///
+       1 "Owns or is buying home, either fully or jointly; mobile home owners who rent lots are included here"  ///
+       5 "Pays rent"  ///
+       8 "Neither owns nor rents"
+
+label define V8975L  ///
+       1 "Yes"  ///
+       5 "No"  ///
+       9 "NA; DK"  ///
+       0 "Inap.: not a homeowner (V8974=5 or 8)"
+
+label define V9349L  ///
+       0 "None"  ///
+       1 "One"  ///
+       2 "Two"  ///
+       3 "Three"  ///
+       4 "Four"  ///
+       5 "Five"  ///
+       6 "Six"  ///
+       7 "Seven"  ///
+       8 "Eight"  ///
+       9 "Nine"  ///
+      10 "Ten"  ///
+      11 "Eleven"  ///
+      12 "Twelve; GED"  ///
+      13 "First year of college"  ///
+      14 "Second year of college, with or without Associate`=char(146)'s degree"  ///
+      15 "Third year of college"  ///
+      16 "Fourth year of college; college graduate"  ///
+      17 "At least some postgraduate work"  ///
+      99 "NA; DK"
+
+label define V9408L  ///
+       1 "White"  ///
+       2 "Black"  ///
+       3 "Spanish-American"  ///
+       7 "Other"  ///
+       9 "NA"
 
 label values ER10004A ER10004AL
+label values ER10035  ER10035L
+label values ER10039  ER10039L
 label values ER11212  ER11212L
 label values ER11214  ER11214L
 label values ER11227  ER11227L
@@ -7003,7 +8306,11 @@ label values ER11553  ER11553L
 label values ER11555  ER11555L
 label values ER11568  ER11568L
 label values ER11570  ER11570L
+label values ER11848  ER11848L
+label values ER12222  ER12222L
 label values ER13008A ER13008AL
+label values ER13040  ER13040L
+label values ER13044  ER13044L
 label values ER14349  ER14349L
 label values ER14478  ER14478L
 label values ER14480  ER14480L
@@ -7093,7 +8400,11 @@ label values ER15090  ER15090L
 label values ER15091  ER15091L
 label values ER15092  ER15092L
 label values ER15093  ER15093L
+label values ER15928  ER15928L
+label values ER16516  ER16516L
 label values ER17007  ER17007L
+label values ER17043  ER17043L
+label values ER17049  ER17049L
 label values ER18489  ER18489L
 label values ER18633  ER18633L
 label values ER18635  ER18635L
@@ -7183,8 +8494,15 @@ label values ER19286  ER19286L
 label values ER19287  ER19287L
 label values ER19288  ER19288L
 label values ER19289  ER19289L
+label values ER19989  ER19989L
 label values ER2005A  ER2005AL
+label values ER2007   ER2007L
+label values ER2032   ER2032L
+label values ER2036   ER2036L
+label values ER20457  ER20457L
 label values ER21007  ER21007L
+label values ER21042  ER21042L
+label values ER21048  ER21048L
 label values ER21857  ER21857L
 label values ER22002  ER22002L
 label values ER22004  ER22004L
@@ -7275,7 +8593,11 @@ label values ER22681  ER22681L
 label values ER22682  ER22682L
 label values ER22683  ER22683L
 label values ER22684  ER22684L
+label values ER23426  ER23426L
+label values ER24148  ER24148L
 label values ER25007  ER25007L
+label values ER25028  ER25028L
+label values ER25039  ER25039L
 label values ER25838  ER25838L
 label values ER25983  ER25983L
 label values ER25985  ER25985L
@@ -7366,6 +8688,8 @@ label values ER26662  ER26662L
 label values ER26663  ER26663L
 label values ER26664  ER26664L
 label values ER26665  ER26665L
+label values ER27393  ER27393L
+label values ER28047  ER28047L
 label values ER3096   ER3096L
 label values ER3202   ER3202L
 label values ER3204   ER3204L
@@ -7382,7 +8706,10 @@ label values ER3540   ER3540L
 label values ER3553   ER3553L
 label values ER3555   ER3555L
 label values ER3568   ER3568L
+label values ER3570   ER3570L
 label values ER36007  ER36007L
+label values ER36028  ER36028L
+label values ER36039  ER36039L
 label values ER36856  ER36856L
 label values ER37001  ER37001L
 label values ER37003  ER37003L
@@ -7538,7 +8865,13 @@ label values ER3812   ER3812L
 label values ER3813   ER3813L
 label values ER3814   ER3814L
 label values ER3815   ER3815L
+label values ER3944   ER3944L
+label values ER40565  ER40565L
+label values ER41037  ER41037L
+label values ER4158   ER4158L
 label values ER42007  ER42007L
+label values ER42029  ER42029L
+label values ER42040  ER42040L
 label values ER42847  ER42847L
 label values ER42992  ER42992L
 label values ER42994  ER42994L
@@ -7629,11 +8962,15 @@ label values ER43671  ER43671L
 label values ER43672  ER43672L
 label values ER43673  ER43673L
 label values ER43674  ER43674L
+label values ER46543  ER46543L
 label values ER46936  ER46936L
 label values ER46940  ER46940L
 label values ER46948  ER46948L
 label values ER46962  ER46962L
+label values ER46981  ER46981L
 label values ER47307  ER47307L
+label values ER47329  ER47329L
+label values ER47345  ER47345L
 label values ER48169  ER48169L
 label values ER48314  ER48314L
 label values ER48316  ER48316L
@@ -7721,11 +9058,18 @@ label values ER49017  ER49017L
 label values ER49018  ER49018L
 label values ER49019  ER49019L
 label values ER5004A  ER5004AL
+label values ER5006   ER5006L
+label values ER5031   ER5031L
+label values ER5035   ER5035L
+label values ER51904  ER51904L
 label values ER52344  ER52344L
 label values ER52348  ER52348L
 label values ER52352  ER52352L
 label values ER52366  ER52366L
+label values ER52405  ER52405L
 label values ER53007  ER53007L
+label values ER53029  ER53029L
+label values ER53045  ER53045L
 label values ER53863  ER53863L
 label values ER53991  ER53991L
 label values ER53993  ER53993L
@@ -7737,14 +9081,20 @@ label values ER54042  ER54042L
 label values ER54044  ER54044L
 label values ER54344  ER54344L
 label values ER54346  ER54346L
+label values ER54361  ER54361L
 label values ER54363  ER54363L
+label values ER54378  ER54378L
 label values ER54380  ER54380L
 label values ER54395  ER54395L
 label values ER54397  ER54397L
 label values ER54610  ER54610L
+label values ER54611  ER54611L
 label values ER54613  ER54613L
 label values ER54614  ER54614L
 label values ER54615  ER54615L
+label values ER54617  ER54617L
+label values ER54618  ER54618L
+label values ER54619  ER54619L
 label values ER54621  ER54621L
 label values ER54622  ER54622L
 label values ER54623  ER54623L
@@ -7752,11 +9102,20 @@ label values ER54624  ER54624L
 label values ER54626  ER54626L
 label values ER54627  ER54627L
 label values ER54628  ER54628L
+label values ER54630  ER54630L
+label values ER54631  ER54631L
+label values ER54632  ER54632L
 label values ER54633  ER54633L
 label values ER54635  ER54635L
 label values ER54636  ER54636L
 label values ER54637  ER54637L
 label values ER54638  ER54638L
+label values ER54653  ER54653L
+label values ER54654  ER54654L
+label values ER54656  ER54656L
+label values ER54657  ER54657L
+label values ER54658  ER54658L
+label values ER54659  ER54659L
 label values ER54660  ER54660L
 label values ER54662  ER54662L
 label values ER54663  ER54663L
@@ -7794,10 +9153,12 @@ label values ER54771  ER54771L
 label values ER54772  ER54772L
 label values ER54773  ER54773L
 label values ER54774  ER54774L
+label values ER57659  ER57659L
 label values ER58153  ER58153L
 label values ER58159  ER58159L
 label values ER58163  ER58163L
 label values ER58179  ER58179L
+label values ER58223  ER58223L
 label values ER6096   ER6096L
 label values ER6202   ER6202L
 label values ER6204   ER6204L
@@ -7814,7 +9175,13 @@ label values ER6541   ER6541L
 label values ER6554   ER6554L
 label values ER6556   ER6556L
 label values ER6569   ER6569L
+label values ER6571   ER6571L
+label values ER6814   ER6814L
+label values ER6998   ER6998L
 label values ER7004A  ER7004AL
+label values ER7006   ER7006L
+label values ER7031   ER7031L
+label values ER7035   ER7035L
 label values ER8319   ER8319L
 label values ER8321   ER8321L
 label values ER8334   ER8334L
@@ -7831,6 +9198,8 @@ label values ER8671   ER8671L
 label values ER8673   ER8673L
 label values ER8686   ER8686L
 label values ER8688   ER8688L
+label values ER9060   ER9060L
+label values ER9249   ER9249L
 label values S102     S102L
 label values S104     S104L
 label values S108     S108L
@@ -7861,6 +9230,12 @@ label values S804     S804L
 label values S808     S808L
 label values S818     S818L
 label values V10010   V10010L
+label values V1008    V1008L
+label values V103     V103L
+label values V104     V104L
+label values V10419   V10419L
+label values V10437   V10437L
+label values V10438   V10438L
 label values V10872   V10872L
 label values V10898   V10898L
 label values V10900   V10900L
@@ -7889,15 +9264,41 @@ label values V10932   V10932L
 label values V10934   V10934L
 label values V10935   V10935L
 label values V10936   V10936L
+label values V10996   V10996L
+label values V11055   V11055L
 label values V11079   V11079L
 label values V1109    V1109L
 label values V11112   V11112L
+label values V11606   V11606L
+label values V11618   V11618L
+label values V11619   V11619L
+label values V117     V117L
 label values V11888   V11888L
+label values V11938   V11938L
 label values V1201    V1201L
+label values V1239    V1239L
 label values V12510   V12510L
+label values V1264    V1264L
+label values V1265    V1265L
+label values V13011   V13011L
+label values V13023   V13023L
+label values V13024   V13024L
+label values V13565   V13565L
 label values V13710   V13710L
+label values V14114   V14114L
+label values V14126   V14126L
+label values V14127   V14127L
+label values V14612   V14612L
 label values V14810   V14810L
+label values V1490    V1490L
+label values V15130   V15130L
+label values V15140   V15140L
+label values V15141   V15141L
+label values V16086   V16086L
 label values V16310   V16310L
+label values V16631   V16631L
+label values V16641   V16641L
+label values V16642   V16642L
 label values V17299   V17299L
 label values V17317   V17317L
 label values V17319   V17319L
@@ -7923,13 +9324,34 @@ label values V17359   V17359L
 label values V17360   V17360L
 label values V17361   V17361L
 label values V17362   V17362L
+label values V17366   V17366L
 label values V17367   V17367L
+label values V17369   V17369L
+label values V17483   V17483L
 label values V17710   V17710L
+label values V18049   V18049L
+label values V18072   V18072L
+label values V18073   V18073L
 label values V1809    V1809L
+label values V181     V181L
 label values V18703   V18703L
+label values V18814   V18814L
 label values V19010   V19010L
 label values V1902    V1902L
+label values V19349   V19349L
+label values V19372   V19372L
+label values V19373   V19373L
+label values V1942    V1942L
+label values V1967    V1967L
+label values V1968    V1968L
+label values V20114   V20114L
+label values V20198   V20198L
 label values V20310   V20310L
+label values V20651   V20651L
+label values V20672   V20672L
+label values V20673   V20673L
+label values V21420   V21420L
+label values V21504   V21504L
 label values V21608   V21608L
 label values V21816   V21816L
 label values V21832   V21832L
@@ -7938,20 +9360,79 @@ label values V21864   V21864L
 label values V21896   V21896L
 label values V21912   V21912L
 label values V21928   V21928L
+label values V2202    V2202L
+label values V22406   V22406L
+label values V22427   V22427L
+label values V22428   V22428L
+label values V23276   V23276L
+label values V23333   V23333L
 label values V2410    V2410L
 label values V2503    V2503L
+label values V2542    V2542L
+label values V2566    V2566L
+label values V2567    V2567L
+label values V2828    V2828L
 label values V3010    V3010L
 label values V3056    V3056L
+label values V3095    V3095L
+label values V3108    V3108L
+label values V3300    V3300L
 label values V3410    V3410L
 label values V3468    V3468L
+label values V3508    V3508L
+label values V3522    V3522L
+label values V3720    V3720L
 label values V3810    V3810L
 label values V3868    V3868L
+label values V3921    V3921L
+label values V3939    V3939L
+label values V4093    V4093L
+label values V4204    V4204L
 label values V4310    V4310L
+label values V4436    V4436L
+label values V4450    V4450L
+label values V4684    V4684L
+label values V5096    V5096L
 label values V5210    V5210L
+label values V5350    V5350L
+label values V5364    V5364L
 label values V542     V542L
+label values V5608    V5608L
+label values V5662    V5662L
 label values V5710    V5710L
+label values V5850    V5850L
+label values V5864    V5864L
+label values V593     V593L
+label values V594     V594L
+label values V6157    V6157L
+label values V6209    V6209L
 label values V6310    V6310L
+label values V6462    V6462L
+label values V6479    V6479L
+label values V6480    V6480L
+label values V6754    V6754L
+label values V6802    V6802L
 label values V6910    V6910L
+label values V7067    V7067L
+label values V7084    V7084L
+label values V7085    V7085L
+label values V7387    V7387L
+label values V7447    V7447L
 label values V7510    V7510L
+label values V7658    V7658L
+label values V7675    V7675L
+label values V7676    V7676L
+label values V801     V801L
+label values V8039    V8039L
+label values V8099    V8099L
 label values V8210    V8210L
+label values V8352    V8352L
+label values V8364    V8364L
+label values V8663    V8663L
+label values V8723    V8723L
 label values V8810    V8810L
+label values V8961    V8961L
+label values V8974    V8974L
+label values V8975    V8975L
+label values V9349    V9349L
+label values V9408    V9408L

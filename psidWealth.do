@@ -3,7 +3,7 @@ set more off
 global path D:\data\psidWealth
 
 /*
-do J203274
+do J203301
 save raw, replace
 */
 use raw, clear
@@ -12,26 +12,15 @@ use raw, clear
 drop if V17702>=10001 & V17702<=12043
 drop if ER4120==9999999
 
-// head change
-local yearName 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1999 2001 2003 2005 2007 2009 2011 2013
-local nYear: word count `yearName'
-local varList V10010	V11112	V12510	V13710	V14810	V16310	V17710	V19010	V20310	V21608		ER2005A	ER5004A	ER7004A	ER10004A	ER13008A	ER17007	ER21007	ER25007	ER36007	ER42007	ER47307	ER53007
-forval iy=1/`nYear' {
-	local y `: word `iy' of `yearName''
-	local v `: word `iy' of `varList''
-	replace `v'=cond(inlist(`v',0,1,2),1,.)
-	rename `v' comp`y'
-}
-egen sameHead19841989=rowmin(comp1985 comp1986 comp1987 comp1988 comp1989)
-egen sameHead19891994=rowmin(comp1990 comp1991 comp1992 comp1993 comp1994)
-egen sameHead19941999=rowmin(comp1995 comp1996 comp1997 comp1999)
-gen sameHead19992001=comp2001
-gen sameHead20012003=comp2003
-gen sameHead20032005=comp2005
-gen sameHead20052007=comp2007
-gen sameHead20072009=comp2009
-gen sameHead20092011=comp2011
-gen sameHead20112013=comp2013
+// demographics
+run demographics
+
+// impute wealth
+run imputeWealth1984
+run imputeWealth1989
+run imputeWealth1994
+run imputeWealth
+run imputeWealth2013
 
 // whether business
 local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
@@ -45,12 +34,49 @@ forval iy=1/`nYear' {
 	rename `v' hasBus`y'
 }
 
+// whether business -- 2
+local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
+local nYear: word count `yearName'
+local varList V10907 V17322 ER3730 ER15001	ER19197	ER22562	ER26543	ER37561	ER43552	ER48877 ER54624
+forval iy=1/`nYear' {
+	local y `: word `iy' of `yearName''
+	local v `: word `iy' of `varList''
+	// replace `v'=cond(`v'==1,1,cond(`v'==5,0,.))
+	replace `v'=cond(`v'==1,1,cond(`v'==5,0,.))
+	rename `v' hasBus2`y'
+}
 
-// 1984 to 2007
+
+// impute asset income
+run imputeAssetInc
+
+// business income
+local yearName 1994 1999 2001 2003 2005 2007 2009 2011 2013
+local nYear: word count `yearName'
+local varList ER4120	ER6960	ER9211	ER12194	ER16491	ER20423	ER24110	ER27911	ER40901	ER46809	ER52217	ER58018
+forval iy=1/`nYear' {
+	local y `: word `iy' of `yearName''
+	local v `: word `iy' of `varList''
+	replace `v'=. if `v'<=-999999
+	replace `v'=. if `v'>=9999999
+	rename `v' busincH`y'
+}
+local yearName 1994 1999 2001 2003 2005 2007 2009 2011 2013
+local nYear: word count `yearName'
+local varList ER4142	ER6982	ER9233	ER12215	ER16512	ER20445	ER24112	ER27941	ER40931	ER46839	ER52247	ER58048
+forval iy=1/`nYear' {
+	local y `: word `iy' of `yearName''
+	local v `: word `iy' of `varList''
+	replace `v'=. if `v'<=-999999
+	replace `v'=. if `v'>=9999999
+	rename `v' busincW`y'
+}
+
+// 1984 to 2007 home equity
 // year index
 local yearName 1984 1989 1994 1999 2001 2003 2005 2007
-local varList 03 05 09 11 13 15 07 20 16 17
-local varName bus saving realest stocks vehi others debt hequity wealth wealthheq
+local varList 20 16 17
+local varName hequity wealth wealthheq
 local yearList 1 2 3 4 5 6 7 8
 local nVar: word count `varList'
 local nYear: word count `yearList'
@@ -65,446 +91,54 @@ forval iv=1/`nVar' {
 	}
 }
 // manually rename for 2009 2011 2013
-rename ER46938 bus2009
-rename ER46942 saving2009
-rename ER46946 debt2009
-rename ER46950 realest2009
-rename ER46954 stocks2009
-rename ER46956 vehi2009
-rename ER46960 others2009
 rename ER46966 hequity2009
 rename ER46968 wealth2009
 rename ER46970 wealthheq2009
 
-rename ER52346 bus2011
-rename ER52350 saving2011
-rename ER52354 realest2011
-rename ER52358 stocks2011
-rename ER52360 vehi2011
-rename ER52364 others2011
 rename ER52390 hequity2011
 rename ER52392 wealth2011
 rename ER52394 wealthheq2011
-gen debt2011=ER52372+ER52376+ER52380+ER52384+ER52388
+gen debts2011=ER52372+ER52376+ER52380+ER52384+ER52388
 
-gen realest2013=ER58165-ER58167
-gen bus2013=ER58155-ER58157
-rename ER58161 saving2013
-rename ER58171 stocks2013
-rename ER58173 vehi2013
-rename ER58177 others2013
+gen realest2013=realestWorth2013-realestDebt2013
+gen bus2013=busWorth2013-busDebt2013
+gen debts2013=ER58185+ER58189+ER58193+ER58197+ER58201+ER58205
 rename ER58207 hequity2013
 rename ER58209 wealth2013
 rename ER58211 wealthheq2013
-gen debt2013=ER58185+ER58189+ER58193+ER58197+ER58201+ER58205
-
-/*
-// no debt information for 2011 data  
-ER52346 IMP VALUE FARM/BUS (W11) 11
-ER52350 IMP VAL CHECKING/SAVING (W28) 11
-ER52354 IMP VAL OTH REAL ESTATE (W2) 11
-ER52358 IMP VALUE STOCKS (W16) 11
-ER52360 IMP VALUE VEHICLES (W6) 11
-ER52364 IMP VALUE OTH ASSETS (W34) 11
-ER52390 IMP VALUE HOME EQUITY 11
-*/
 
 // return 1984
 rename V11407 businc1984
+replace businc1984=. if businc1984<=-99999 | businc1984>=999999
 rename V11412 rent1984
 rename V11414 intdiv1984
 rename V11417 wifeothers1984
 
+/*
+rename V10266 businc1984
+rename V11412 rent1984
+rename V11414 intdiv1984
+rename V11417 wifeothers1984
+*/
+
 // return 1989
 rename V17839 businc1989
+replace businc1989=. if businc1989<=-99999 | businc1989>=999999
 rename V17844 rent1989
 rename V17846 intdiv1989
 rename V17849 wifeothers1989
 
-/************ return 1994 **************************/
-// head rent
-local varNum 6203
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen rentHead1994=cond(ER`varNumP1'==1,ER`varNum'*12, ///
-cond(ER`varNumP1'==2,ER`varNum'*4, ///
-cond(ER`varNumP1'==3,ER`varNum'*2, ///
-cond(ER`varNumP1'==4,ER`varNum'*1,0))))
-
-// head dividends
-local varNum 6218
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsHead1994=cond(ER`varNumP1'==1,ER`varNum'*12, ///
-cond(ER`varNumP1'==2,ER`varNum'*4, ///
-cond(ER`varNumP1'==3,ER`varNum'*2, ///
-cond(ER`varNumP1'==4,ER`varNum'*1,0))))
-
-// head interest
-local varNum 6233
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestHead1994=cond(ER`varNumP1'==1,ER`varNum'*12, ///
-cond(ER`varNumP1'==2,ER`varNum'*4, ///
-cond(ER`varNumP1'==3,ER`varNum'*2, ///
-cond(ER`varNumP1'==4,ER`varNum'*1,0))))
-
-// head trust
-local varNum 6248
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustHead1994=cond(ER`varNumP1'==1,ER`varNum'*12, ///
-cond(ER`varNumP1'==2,ER`varNum'*4, ///
-cond(ER`varNumP1'==3,ER`varNum'*2, ///
-cond(ER`varNumP1'==4,ER`varNum'*1,0))))
-
-// wife dividends
-local varNum 6525
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsWife1994=cond(ER`varNumP1'==1,ER`varNum'*12, ///
-cond(ER`varNumP1'==2,ER`varNum'*4, ///
-cond(ER`varNumP1'==3,ER`varNum'*2, ///
-cond(ER`varNumP1'==4,ER`varNum'*1,0))))
-
-// wife interest
-local varNum 6540
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestWife1994=cond(ER`varNumP1'==1,ER`varNum'*12, ///
-cond(ER`varNumP1'==2,ER`varNum'*4, ///
-cond(ER`varNumP1'==3,ER`varNum'*2, ///
-cond(ER`varNumP1'==4,ER`varNum'*1,0))))
-
-// wife trust
-local varNum 6555
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustWife1994=cond(ER`varNumP1'==1,ER`varNum'*12, ///
-cond(ER`varNumP1'==2,ER`varNum'*4, ///
-cond(ER`varNumP1'==3,ER`varNum'*2, ///
-cond(ER`varNumP1'==4,ER`varNum'*1,0))))
-
-
-// replace ER4120=. if ER4120==9999999
-// replace ER4142=. if ER4142==9999999
-gen busincHead1994=ER6960
-gen busincWife1994=ER6982
-
-/***************** 1999 ************************/
-// head rent
-local varNum 14479
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen rentHead1999=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// head dividends
-local varNum 14494
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsHead1999=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// head interest
-local varNum 14509
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestHead1999=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// head trust
-local varNum 14524
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustHead1999=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// wife dividends
-local varNum 14790
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsWife1999=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// wife interest
-local varNum 14805
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestWife1999=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// wife trust
-local varNum 14820
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustWife1999=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-gen busincHead1999=ER16491
-gen busincWife1999=ER16512
-
-/***************** 2001 ************************/
-// head rent
-local varNum 18634
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen rentHead2001=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// head dividends
-local varNum 18650
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsHead2001=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// head interest
-local varNum 18666
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestHead2001=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// head trust
-local varNum 18682
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustHead2001=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// wife dividends
-local varNum 18966
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsWife2001=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// wife interest
-local varNum 18982
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestWife2001=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// wife trust
-local varNum 18998
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustWife2001=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-gen busincHead2001=ER20423
-gen busincWife2001=ER20445
-
-/***************** 2003 ************************/
-// head rent
-local varNum 22003
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen rentHead2003=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// head dividends
-local varNum 22020
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsHead2003=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// head interest
-local varNum 22037
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestHead2003=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// head trust
-local varNum 22054
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustHead2003=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// wife dividends
-local varNum 22353
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsWife2003=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// wife interest
-local varNum 22370
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestWife2003=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-// wife trust
-local varNum 22387
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustWife2003=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-
-gen busincHead2003=ER20423
-gen busincWife2003=ER20445
-
-/******** uncomment this to inspect the manual aggregation and Michigan-PSID aggregation **********
-/***************** 2005 ************************/
-// head rent
-local varNum 25984
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen rentHead2005=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-gen rentHeadImp2005=ER27932
-
-// head dividends
-local varNum 26001
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsHead2005=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-gen dividendsHeadImp2005=ER27934
-
-// head interest
-local varNum 26018
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestHead2005=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-gen interestHeadImp2005=ER27936
-
-// head trust
-local varNum 26035
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustHead2005=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-gen trustHeadImp2005=ER27938
-
-// wife rent
-local varNum 26317
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen rentWife2005=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-gen rentWifeImp2005=ER27945
-
-// wife dividends
-local varNum 26334
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen dividendsWife2005=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-gen dividendsWifeImp2005=ER27947
-
-// wife interest
-local varNum 26351
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen interestWife2005=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-gen interestWifeImp2005=ER27949
-
-// wife trust
-local varNum 26368
-local varNumP1 = `varNum'+1
-replace ER`varNum'=. if ER`varNum'>=9999998 | ER`varNum'<=-99999
-gen trustWife2005=cond(ER`varNumP1'==3,ER`varNum'*52, ///
-cond(ER`varNumP1'==4,ER`varNum'*26, ///
-cond(ER`varNumP1'==5,ER`varNum'*12, ///
-cond(ER`varNumP1'==6,ER`varNum'*1,0))))
-gen trustWifeImp2005=ER27951
-
-// business
-replace ER27911=. if ER27911==9999999
-replace ER27941=. if ER27941==9999999
-gen busincHead2005=ER27911
-gen busincWife2005=ER27941
+/*
+rename V16423 businc1989
+rename V16428 rent1989
+rename V16430 intdiv1989
+rename V16433 wifeothers1989
 */
 
-/********* 2005-2013 *********/
-local varName busincHead rentHead dividendsHead interestHead trustHead busincWife rentWife dividendsWife interestWife trustWife
-local yearName 2005 2007 2009 2011 2013
-local varList2005 "27911 27932 27934 27936 27938 27941 27945 27947 27949 27951"
-local varList2007 "40901 40922 40924 40926 40928 40931 40935 40937 40939 40941"
-local varList2009 "46809 46830 46832 46834 46836 46839 46843 46845 46847 46849"
-local varList2011 "52217 52238 52240 52242 52244 52247 52251 52253 52255 52257"
-local varList2013 "58018 58039 58041 58043 58045 58048 58052 58054 58056 58058"
-local nVar: word count `varName'
-local nYear: word count `yearName'
-forval iy=1/`nYear' {
-	local y `: word `iy' of `yearName''
-	// local varList: `varList`y''
-	forval iv=1/`nVar' {
-		local vid `: word `iv' of `varList`y'''
-		local vname `: word `iv' of `varName''
-		rename ER`vid' `vname'`y'
-	}
-}
-
-/*****************/
+// 
 
 /** compute capital gains **/
-local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
+local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011
 local nYear: word count `yearName'
 local nYearM1 = `nYear'-1
 forval iy = 1/`nYearM1' {
@@ -512,24 +146,20 @@ forval iy = 1/`nYearM1' {
 	local y `: word `iy' of `yearName''
 	local y2 `: word `iyp1' of `yearName''
 	gen stocksGainsRaw`y2' = (stocks`y2' - stocks`y' - (stocksBought`y2'-stocksSold`y2'))
-	// exclude top 1% and bottom 1%
-	quiet sum stocksGainsRaw`y2' if stocksGainsRaw`y2'~=.,detail
-	replace stocksGainsRaw`y2'=. if stocksGainsRaw`y2'<=`r(p1)' | stocksGainsRaw`y2'>=`r(p99)'
-	// replace stocksGainsRaw`y2'=. if stocks`y2'==0
-	
+	_pctile stocksGainsRaw`y2', p(1 99)
+	replace stocksGainsRaw`y2'=. if stocksGainsRaw`y2'<`r(r1)' | stocksGainsRaw`y2'>`r(r2)' 
+
 	gen realestGainsRaw`y2' = (realest`y2' - realest`y' - (realestBought`y2'-realestSold`y2'))
-	quiet sum realestGainsRaw`y2' if realestGainsRaw`y2'~=.,detail
-	replace realestGainsRaw`y2'=. if realestGainsRaw`y2'<=`r(p1)' | realestGainsRaw`y2'>=`r(p99)'
-	// replace realestGainsRaw`y2'=. if realest`y2'==0
-	
+	_pctile realestGainsRaw`y2', p(1 99)
+	replace realestGainsRaw`y2'=. if realestGainsRaw`y2'<`r(r1)' | realestGainsRaw`y2'>`r(r2)' 
+
 	gen busGainsRaw`y2' = (bus`y2' - bus`y' - (busBought`y2'-busSold`y2'))
-	quiet sum busGainsRaw`y2' if busGainsRaw`y2'~=.,detail
-	replace busGainsRaw`y2'=. if busGainsRaw`y2'<=`r(p1)' | busGainsRaw`y2'>=`r(p99)'
-	// replace busGainsRaw`y2'=. if bus`y2'==0
+	_pctile busGainsRaw`y2', p(1 99)
+	replace busGainsRaw`y2'=. if busGainsRaw`y2'<`r(r1)' | busGainsRaw`y2'>`r(r2)' 
 }
 
 // compute capital returns at annual level
-local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
+local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011
 local nYear: word count `yearName'
 local nYearM1 = `nYear'-1
 forval iy = 1/`nYearM1' {
@@ -571,30 +201,44 @@ bro stocks2001 stocks2003 stocksBought2003 stocksSold2003 stocksGainsRaw2003 sto
 bro stocks1984 stocks1989 stocksBought1989 stocksSold1989 stocksGainsRaw1989 stocksGains1989 stocksReturn1989 if sameHead19841989==1
 */
 
-/* aggregate */
-foreach year in 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013 {
-	gen wealth2`year' = wealthheq`year' - hequity`year' - vehi`year' + debt`year'
+// correct for some obvious bugs
+replace bus2005=0 if bus2005==1
+replace bus2003=0 if bus2003==1
+
+/*********** Wealth Aggregate *******************/
+foreach y in 1984 1989 {
+	gen wealthM`y' = realest`y' + bus`y' + vehi`y' + stocks`y' + savings`y'+ bonds`y' - debts`y' + hequity`y'
+	gen wealth2`y' = realest`y' + bus`y' + stocks`y' + savings`y'+ bonds`y'
 }
 
-foreach year in 1984 1989 1994 1999 2001 {
-	gen wealthnh`year' = wealth`year' - realest`year'
+foreach y in 1994 1999 2001 2003 2005 2007 2009 2011 2013 {
+	gen wealthM`y' = realest`y' + bus`y' + vehi`y' + stocks`y' + savings`y'+ bonds`y' - debts`y' + hequity`y' + ira`y'
+	gen wealth2`y' = realest`y' + bus`y' + stocks`y' + savings`y'+ bonds`y' + ira`y'
 }
 
-foreach year in 1984 1989 {
-	gen kinc`year' = businc`year'+intdiv`year' + rent`year' + wifeothers`year'
-	// gen kincheq`year' = kinc`year'+rent`year'
-}
-gen kincWGains1989 = kinc1989 + stocksGains1989 + realestGains1989 + busGains1989
-
-foreach year in 1994 1999 2001 2003 2005 2007 2009 2011 2013 {
-	gen businc`year' = busincHead`year' + busincWife`year'
-	gen kinc`year' = rentHead`year' + trustHead`year' + busincHead`year' + busincWife`year' + dividendsHead`year' + dividendsWife`year' ///
-		+ interestHead`year' + interestWife`year'
-	gen kincWGains`year' = kinc`year' + stocksGains`year' + realestGains`year' + busGains`year'
-	// gen kincheq`year' = kinc`year' + rentHead`year'
+/************ Kinc Aggregate ***********************/
+foreach y in 1984 1989 {
+	gen kinc`y'= businc`y'+rent`y'+intdiv`y'+wifeothers`y'
+	gen sinc`y'= intdiv`y'
 }
 
-// drop V* ER*
+foreach y in 1994 1999 2001 2003 2005 2007 2009 2011 2013 {
+	gen businc`y' = busincH`y'+busincW`y'
+	gen sinc`y' = divH`y'+intH`y'+divW`y'+intW`y'
+}
+foreach y in 1994 1999 2001 {
+	gen kinc`y' = rentH`y'+divH`y'+intH`y'+trustH`y'+divW`y'+intW`y'+trustW`y'+othsW`y'
+}
+foreach y in 2003 2005 2007 2009 2011 2013 {
+	gen kinc`y' = rentH`y'+divH`y'+intH`y'+trustH`y'+rentW`y'+divW`y'+intW`y'+trustW`y'
+}
+
+foreach y in 1989 1994 1999 2001 2003 2005 2007 2009 2011 {
+	gen kGains`y' = stocksGains`y' + realestGains`y' + busGains`y'
+	gen kincWGains`y' = kinc`y' + stocksGains`y' + realestGains`y' + busGains`y'
+}
+
+drop V* ER* S* 
 
 gen id = _n
 save wealth_clear, replace

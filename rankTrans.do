@@ -1,14 +1,14 @@
-use wealth_clear, clear
+// use wealth_clear, clear
 
 local weight 1
 local ntile 3
 local homeequity 1
-local dropOutlier 1
+local dropOutlier 0
 
 local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
 foreach y of local yearName {
 	if `homeequity'==1 {
-		rename wealthheq`y' wealth0`y'
+		rename wealthM`y' wealth0`y'
 	}
 	else {
 		rename wealth`y' wealth0`y'
@@ -16,7 +16,7 @@ foreach y of local yearName {
 	
 	if `dropOutlier'==1 {
 		sum wealth0`y', d
-		replace wealth0`y'=. if wealth0`y'>`r(p99)' | wealth0`y'<`r(p1)'
+		replace wealth0`y'=. if wealth0`y'>`r(p95)' | wealth0`y'<`r(p5)'
 	}
 	
 	if `weight'==1 {

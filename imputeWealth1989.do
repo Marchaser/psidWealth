@@ -1,9 +1,11 @@
-use raw, clear
+// use raw, clear
 
 /************** Irregular cases *****************/
 // stock trades are irregular, check the following example carefully
 // bro ER15075 ER15076 ER15077 ER15078 ER15083 ER15088 ER15089
 /************** End ************************/
+
+local imputation -1
 
 // Impute wealth with bracket value
 #delimit ;
@@ -91,6 +93,7 @@ forval iv=1/`nVars' {;
 	local bpL: word `iv' of `bpLL';
 	local nbp: word count `bpL';
 	local bpVar = `value'+1;
+	local bpVar="V`bpVar'";
 	forval ib=1/`nbp' {;
 		local bp`ib': word `ib' of `bpL';
 	};
@@ -106,6 +109,7 @@ forval iv=1/`nVars' {;
 	replace `value'=. if `value'>9999999;
 	
 	
+	if `imputation'==0 {;
 	if `nbp'==3 {;
 		// (0, bp3]
 		replace `value'=`bp3'/2 if `bpVar'==1;
@@ -142,6 +146,7 @@ forval iv=1/`nVars' {;
 		replace `value'=`bp2'*1.5 if `bpVar'==8;
 		// DK and Refused
 		replace `value'=. if inlist(`bpVar',97,98,99);
+	};
 	};
 	
 	gen `var'`year' = `value';

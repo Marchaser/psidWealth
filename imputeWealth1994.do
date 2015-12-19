@@ -1,4 +1,4 @@
-use raw, clear
+// use raw, clear
 
 /************** Irregular cases *****************/
 // stock trades are irregular, check the following example carefully
@@ -120,6 +120,7 @@ forval iv=1/`nVars' {;
 	forval ib=1/`nbp' {;
 		local bp`ib': word `ib' of `bpL';
 		local bp`ib'Var: word `ib' of `bpVarL';
+		local bp`ib'Var = "ER`bp`ib'Var'";
 	};
 	
 	local year 1994;

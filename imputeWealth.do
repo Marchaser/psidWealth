@@ -1,9 +1,11 @@
-use raw, clear
+// use raw, clear
 
 /************** Irregular cases *****************/
 // stock trades are irregular, check the following example carefully
 // bro ER15075 ER15076 ER15077 ER15078 ER15083 ER15088 ER15089
 /************** End ************************/
+
+local imputation -1
 
 // Impute wealth with bracket value
 #delimit ;
@@ -201,35 +203,104 @@ forval iv=1/`nVars' {;
 		local value: word `iy' of `valueL';
 		local year: word `iy' of `yearL';
 		
+		replace `value'=. if `value'<=-99999999;
+		replace `value'=. if `value'>=999999997;
 		replace `value'=. if inlist(`whetherHave',8,9);
 		
-		replace `value'=. if `value'<=-99999999;
+		local v = "`var'`year'";
+			
+		gen `v' = `value';
 		
-		replace `value'=. if `value'>=999999998;
-		
+		if `imputation'==0 {;
+		/*
+		// population average if report DK and NA
+		/*
+		sum `value', d;
+		replace `v'=`r(mean)' if inlist(`whetherHave',8,9);
+		*/
+		reg `value' faminc`year' ageH`year' i.race`year' i.eduH`year' i.ownrent`year' i.mortgage`year';
+		predict temp;
+		replace `v'=temp if inlist(`whetherHave',8,9);
+		drop temp;
+		*/
 		
 		// [bp1, bp2)
-		replace `value'=(`bp1'+`bp2')/2 if `bp1Var'==1 & `bp2Var'==5;
+		/*
+		sum `value' if inrange(`value',`bp1',`bp2');
+		replace `v'=`r(mean)' if `bp1Var'==1 & `bp2Var'==5;
+		*/
+		reg `value' faminc`year' ageH`year' i.race`year' i.eduH`year' i.ownrent`year' i.mortgage`year' if inrange(`value',`bp1',`bp2');
+		predict temp;
+		replace `v'=temp if `bp1Var'==1 & `bp2Var'==5;
+		drop temp;
 		// [bp2, inf)
-		replace `value'=`bp2'*1.5 if `bp2Var'==1;
+		/*
+		sum `value' if `value'>=`bp2';
+		replace `v'=`r(mean)' if `bp2Var'==1;
+		*/
+		reg `value' faminc`year' ageH`year' i.race`year' i.eduH`year' i.ownrent`year' i.mortgage`year' if `value'>=`bp2';
+		predict temp;
+		replace `v'=temp if `bp2Var'==1;
+		drop temp;		
 		// [bp3, bp1)
-		replace `value'=(`bp3'+`bp1')/2 if `bp1Var'==5 & `bp3Var'==1;
+		/*
+		sum `value' if inrange(`value',`bp3',`bp1');
+		replace `v'=`r(mean)' if `bp1Var'==5 & `bp3Var'==1;
+		*/
+		reg `value' faminc`year' ageH`year' i.race`year' i.eduH`year' i.ownrent`year' i.mortgage`year' if inrange(`value',`bp3',`bp1');
+		predict temp;
+		replace `v'=temp if `bp1Var'==5 & `bp3Var'==1;
+		drop temp;		
 		// [0, bp3)
-		replace `value'=`bp3'/2 if `bp3Var'==5;
+		/*
+		sum `value' if inrange(`value',0,`bp3');
+		replace `v'=`r(mean)' if `bp3Var'==5;
+		*/
+		reg `value' faminc`year' ageH`year' i.race`year' i.eduH`year' i.ownrent`year' i.mortgage`year' if inrange(`value',0,`bp3');
+		predict temp;
+		replace `v'=temp if `bp3Var'==5;
+		drop temp;		
 		// [bp1, inf)
-		replace `value'=`bp1'*1.5 if `bp1Var'==1 & inlist(`bp2Var',8,9);
+		/*
+		sum `value' if `value'>=`bp1';
+		replace `v'=`r(mean)' if `bp1Var'==1 & inlist(`bp2Var',8,9);
+		*/
+		reg `value' faminc`year' ageH`year' i.race`year' i.eduH`year' i.ownrent`year' i.mortgage`year' if `value'>=`bp1';
+		predict temp;
+		replace `v'=temp if `bp1Var'==1 & inlist(`bp2Var',8,9);
+		drop temp;		
 		// [0, bp1)
-		replace `value'=`bp1'/2 if `bp1Var'==5 & inlist(`bp3Var',8,9);
+		/*
+		sum `value' if inrange(`value',0,`bp1');
+		replace `v'=`r(mean)' if `bp1Var'==5 & inlist(`bp3Var',8,9);
+		*/
+		reg `value' faminc`year' ageH`year' i.race`year' i.eduH`year' i.ownrent`year' i.mortgage`year' if inrange(`value',0,`bp1');
+		predict temp;
+		replace `v'=temp if `bp1Var'==5 & inlist(`bp3Var',8,9);
+		drop temp;	
 		
 		if `nbp'==4 {;
 			// stock case
 			// [bp2, bp4)
-			replace `value'=(`bp2'+`bp4')/2 if `bp2Var'==1 & `bp4Var'==5;
+			/*
+			sum `value' if inrange(`value',`bp2',`bp4');
+			replace `v'=`r(mean)' if `bp2Var'==1 & `bp4Var'==5;
+			*/
+			reg `value' faminc`year' ageH`year' i.race`year' i.eduH`year' i.ownrent`year' i.mortgage`year' if inrange(`value',`bp2',`bp4');
+			predict temp;
+			replace `v'=temp if `bp2Var'==1 & `bp4Var'==5;
+			drop temp;	
 			// [bp4, inf)
-			replace `value'=`bp4'*1.5 if `bp4Var'==1;
+			/*
+			sum `value' if `value'>=`bp4';
+			replace `v'=`r(mean)' if `bp4Var'==1;
+			*/
+			reg `value' faminc`year' ageH`year' i.race`year' i.eduH`year' i.ownrent`year' i.mortgage`year' if `value'>=`bp4';
+			predict temp;
+			replace `v'=temp if `bp4Var'==1;
+			drop temp;	
 		};
-		
-		gen `var'`year' = `value';
+		}; // (if imputation==0)
 	};
 };
 

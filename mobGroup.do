@@ -6,14 +6,14 @@ local ntile 3
 local homeequity 1
 
 // group of entrepreneurs
-local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
+local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011
 local nYear: word count `yearName'
 // rank persistence
 forval iy = 1/`nYear' {
 	local y `: word `iy' of `yearName''
 	
 	if `homeequity'==1{
-		quiet rename wealthheq`y' wealth0`y'
+		quiet rename wealthM`y' wealth0`y'
 	}
 	else {
 		quiet rename wealth`y' wealth0`y'
@@ -27,7 +27,7 @@ forval iy = 1/`nYear' {
 	}
 }
 
-local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
+local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011
 local nYear: word count `yearName'
 local nYearM1 = `nYear'-1
 forval iy = 1/`nYearM1' {
@@ -66,3 +66,8 @@ label define gGroupLab 1 "Staying Worker" ///
 3 "Switching Entre" ///
 4 "Staying Entre"
 quiet label values gGroup gGroupLab
+
+line trans33 year if gGroup==1
+line trans33 year if gGroup==2
+line trans33 year if gGroup==3
+line trans33 year if gGroup==4
