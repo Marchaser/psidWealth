@@ -1,3 +1,9 @@
+/*
+Persistent risk and wealth distribution
+Author: Dan Cao and Wenlan Luo
+Compute transition probability between wealth classes
+*/
+
 // use wealth_clear, clear
 
 local weight 1
@@ -16,7 +22,7 @@ foreach y of local yearName {
 	
 	if `dropOutlier'==1 {
 		sum wealth0`y', d
-		replace wealth0`y'=. if wealth0`y'>`r(p95)' | wealth0`y'<`r(p5)'
+		replace wealth0`y'=. if wealth0`y'>`r(p99)' | wealth0`y'<`r(p1)'
 	}
 	
 	if `weight'==1 {

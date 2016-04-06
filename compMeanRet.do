@@ -1,8 +1,8 @@
 // compute mean returns
 // compute return
-use wealth_clear, clear
+// use wealth_clear, clear
 
-local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011
+local yearName 1984 1989 1994 1999 2001 2003 2005 2007 2009 2011 2013
 local nYear: word count `yearName'
 local nYearM1 = `nYear'-1
 forval iy = 1/`nYear' {
@@ -30,7 +30,7 @@ drop if year==. | wealthTile==.
 /*
 twoway scatter ret year, connect(l) by(wealthTile, note("Group 1 = bottom 20%, Group 5 = top 20%". ///
 "Wealth: business+saving+home_equity+real_estate+stocks+vehicles+others" ///
-"Asset income: PREVIOUS YEAR asset_part_business_income+interest+dividend+rent" ///
+"Asset income: asset_part_business_income+interest+dividend+rent" ///
 "Exclude abs(return)>1")) ///
 ytitle("Return on total asset")
 graph export mean_return.pdf, replace

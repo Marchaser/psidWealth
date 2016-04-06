@@ -1,3 +1,10 @@
+/*
+Persistent risk and wealth distribution
+Author: Dan Cao and Wenlan Luo
+Read capital income 2005-2013. This is obsolete.
+*/
+
+
 /********* 2005-2013 *********/
 local varName busincHead rentHead dividendsHead interestHead trustHead busincWife rentWife dividendsWife interestWife trustWife
 local yearName 2005 2007 2009 2011 2013

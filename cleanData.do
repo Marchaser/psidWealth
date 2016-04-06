@@ -227,10 +227,12 @@ foreach y in 1994 1999 2001 2003 2005 2007 2009 2011 2013 {
 	gen sinc`y' = divH`y'+intH`y'+divW`y'+intW`y'
 }
 foreach y in 1994 1999 2001 {
-	gen kinc`y' = rentH`y'+divH`y'+intH`y'+trustH`y'+divW`y'+intW`y'+trustW`y'+othsW`y'
+	// rent of wife is included in other asset income for wife
+	gen kinc`y' = rentH`y'+divH`y'+intH`y'+trustH`y'+divW`y'+intW`y'+trustW`y'+othsW`y'+businc`y'
 }
 foreach y in 2003 2005 2007 2009 2011 2013 {
-	gen kinc`y' = rentH`y'+divH`y'+intH`y'+trustH`y'+rentW`y'+divW`y'+intW`y'+trustW`y'
+	// rent of wife is separate. no other asset income for wife
+	gen kinc`y' = rentH`y'+divH`y'+intH`y'+trustH`y'+rentW`y'+divW`y'+intW`y'+trustW`y'+businc`y'
 }
 
 foreach y in 1989 1994 1999 2001 2003 2005 2007 2009 2011 {

@@ -1,9 +1,3 @@
-/*
-Persistent risk and wealth distribution
-Author: Dan Cao and Wenlan Luo
-Portal to wealth class transition bootstrap procedure
-*/
-
 // portal to bootstrap
 local nboot 100
 local bootstart 0
@@ -17,9 +11,9 @@ bsample
 drop id
 gen id=_n
 
-run rankTrans
+run compMeanRet
 
 local ibshift = `ib'+`bootstart'
 gen ibootstrap=`ibshift'
-save bootstrap/rankTrans_`ibshift', replace
+save bootstrap/meanRet_`ibshift', replace
 }

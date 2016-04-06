@@ -37,7 +37,9 @@ twoway
 (rarea sd1high_corrRet sd1low_corrRet year if year<=1994, color(gs14))
 (scatter corrRet year if year<=1994, connect(l) lstyle(p1) xlabel(1984 1989 1994, valuelabel angle(45)) xtitle(""))
 (rarea sd1high_corrRet sd1low_corrRet year if year>=1999, color(gs14))
-(scatter corrRet year if year>=1999, connect(l) xlabel(1984 1989 1994 1999 2003 2007 2011, valuelabel angle(45)) xtitle(""))
-, legend(rows(1) order(2 4 1) label(2 "5-Year Correlation") label(4 "2-Year Correlation") label(1 "2SE bands"))
+(scatter corrRet year if year>=1999, connect(l) xlabel(1984 1989 1994 1999 2003 2007 2011, valuelabel angle(30) labsize(small)) xtitle(""))
+, legend(rows(1) order(2 4 1) label(2 "5-Year Correlation") label(4 "2-Year Correlation") label(1 "2SE bands") size(small))
 ;
 #delimit cr
+
+graph export graph/retCorr.pdf, replace
